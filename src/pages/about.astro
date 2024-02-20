@@ -1,0 +1,62 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Timeline from "../components/Timeline.astro";
+
+const works = {
+  companies: [
+    {
+      name: "Cisco",
+      yearOfWork: "Started on July 2022",
+      presentlyWorking: true,
+      description:
+        "As a Site Reliability Engineer (SRE), I optimize the performance and reliability of the infrastructure, ensuring its stability, scalability, and efficiency.",
+      resume: "https://",
+      projects: [
+        {
+          name: "SDWAN",
+          description: "SDWAN",
+        },
+      ],
+    },
+  ],
+};
+---
+
+<!-- mx-auto overflow-auto scroll-auto -->
+<SiteLayout title="About Me">
+  <div class="mx-5 sm:mx-16">
+    <article class="flex flex-col space-y-6 selection:bg-black selection:text-white">
+      <section class="space-y-2">
+        <img
+          class="float-left w-32 rounded-full mx-3"
+          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMXx8aGVhZHNob3R8ZW58MHwxfHx8MTY5MDI3MTY4Nnww&ixlib=rb-4.0.3&q=80&w=1080"
+        />
+        <p class="para-left">
+          Thanks for dropping by and checking out! Innovative and
+          deadline-driven Programmer with 5+ years of experience designing and
+          developing enterprise level applications and APIs with Python &
+          JavaScript
+        </p>
+        <p class="para">
+          Anyway, this is probably a good place to stop. There’s more to my
+          life than what I feel comfortable sharing here, but that’s about
+          the gist of my background and interests. If you made it this far,
+          cool! You’re still awake! Maybe we can chat sometime and get to
+          know each other.
+        </p>
+        <p class="para">
+          At the end of the day, I’m just a Real Human Bean who enjoys doing
+          real human things. If that sounds like your cup of tea, get in
+          touch—I’d love to hear from you!
+        </p>
+      </section>
+      <section class="space-y-2">
+        <h2 class="subtitle">Work Experience</h2>
+        <Timeline works={works} />
+      </section>
+      <section class="space-y-2">
+        <h2 class="subtitle">Education<h2>
+      </section>
+    </article>
+  </div>
+</SiteLayout>
