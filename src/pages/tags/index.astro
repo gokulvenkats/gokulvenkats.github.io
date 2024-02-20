@@ -1,0 +1,7 @@
+---
+import { getCollection } from "astro:content";
+const allPosts = await getCollection("blogs");
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+const pageTitle = "Tag Index";
+---
+<p>{tags}</p>

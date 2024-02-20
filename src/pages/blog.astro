@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../layouts/SiteLayout.astro";
+const allblogs = await getCollection("blogs");
+---
+
+<SiteLayout title="Blogs">
+  <section class="h-screen space-y-6">
+    <h1 class="subtitle text-center">Writings</h1>
+    <ul>
+      {
+        allblogs.map((blog) => (
+          <li class="flex justify-around">
+            <a href={`/blogs/${blog.slug}/`}>{blog.data.title}</a>
+            <time
+              class="sm:block hidden"
+              datetime={blog.data.pubDate.toISOString()}
+            >
+              {blog.data.pubDate.toLocaleDateString("en-us", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                weekday: "short",
+              })}
+            </time>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</SiteLayout>

@@ -1,0 +1,67 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Socials from "../components/Socials.astro";
+import Chips from "../components/Chips.astro";
+import Card from "../components/Card.astro";
+import { getCollection } from "astro:content";
+const allblogs = await getCollection("blogs");
+
+const pageTitle = "Home Page";
+// import DoubleArrow from "/double_arrow_right.svg?url";
+
+import arrowOutward from "/arrow_outward.svg?url";
+---
+
+<Layout title={pageTitle}>
+  <main class="container flex flex-col items-center space-y-10">
+    <section class="flex flex-col items-center self-center place-items-center place-self-center max-w-screen-md space-y-4">
+      <img
+        class="w-28 h-28 mb-3 rounded-full shadow-lg"
+        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+        alt="Bonnie image"
+      />
+      <h1 class="name">Hi, I’m Gokul 👋</h1>
+      <p class="text-sm">Software Engineer @ Cisco</p>
+      <p class="text-base text-center">
+        Python & JavaScript expert with a focus on web technologies, microservices and devops. 
+        <br/>I have a passion for software. <br/> I enjoy creating tools that make life easier for people.
+      </p>
+      <a href="/about" class="text-xs inline-flex items-center">Explore my portfolio.
+        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+      </a>
+      <hr class="w-48 h-0.5 mx-auto my-4 bg-gray-100 border-0 rounded" />
+      <Socials />
+    </section>
+
+    <section class="items-center w-full md:w-3/4 space-y-6">
+      <h1 class="subtitle text-center">Writings</h1>
+        {
+          allblogs.map((blog) => (
+          <Card 
+          title={blog.data.title}, 
+          description={blog.data.description},
+          day={blog.data.pubDate.toLocaleDateString("en-us", {weekday: "short"})},
+          date={blog.data.pubDate.toLocaleDateString("en-us", {day: "2-digit"})}, 
+          month={blog.data.pubDate.toLocaleDateString("en-us", {month: "short"})}, 
+          year={blog.data.pubDate.getFullYear()}, 
+          href=`/blogs/${blog.slug}/`
+          />
+          ))
+        }
+    </section>
+  </main>
+</Layout>
+<!-- <ul class="pl-4 text-slate-900 dark:text-slate-200 list-image-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxNCAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBmaWxsPSIjMzhiZGY4Ij48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMy42ODUuMTUzYS43NTIuNzUyIDAgMCAxIC4xNDMgMS4wNTJsLTggMTAuNWEuNzUuNzUgMCAwIDEtMS4xMjcuMDc1bC00LjUtNC41YS43NS43NSAwIDAgMSAxLjA2LTEuMDZsMy44OTQgMy44OTMgNy40OC05LjgxN2EuNzUuNzUgMCAwIDEgMS4wNS0uMTQzWiIgLz48L3N2Zz4=')]">
+  <li class="pl-2">5 cups chopped Porcini mushrooms</li>
+  <li class="pl-2">1/2 cup of olive oil</li>
+  <li class="pl-2">3lb of celery</li>
+</ul>
+<ul class="list-image-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiPjxwYXRoIGQ9Ik0zODMtNDgwIDIwMC02NjRsNTYtNTYgMjQwIDI0MC0yNDAgMjQwLTU2LTU2IDE4My0xODRabTI2NCAwTDQ2NC02NjRsNTYtNTYgMjQwIDI0MC0yNDAgMjQwLTU2LTU2IDE4My0xODRaIi8+PC9zdmc+')]"}>
+  <li class="pl-2">5 cups chopped Porcini mushrooms</li>
+  <li class="pl-2">1/2 cup of olive oil</li>
+  <li class="pl-2">3lb of celery</li>
+</ul> -->
+
+<!-- I'm a software engineer based in Karachi, Pakistan. I enjoy creating things that live on the internet, whether that be websites, applications, or anything in between. I have been working for 3 year, with a demonstrated history of working in the Computer Software industry. Skilled in Front-end Development. I have 3 years of experience in HTML, CSS, SCSS, JavaScript, Bootstrap, tailwind CSS, StyledComponent, React JS and Next JS. Hence, I have successfully completed several web projects from scratch. Yet, I learn continuously and never stop exploring new technologies. So, I have also gained knowledge of Node JS, Express JS, Mongo DB, Python, firebase and React Native with time. -->

@@ -1,0 +1,62 @@
+---
+import LinkedIn from "../../public/icons/linkedin.svg?raw";
+import Github from "../../public/icons/github.svg?raw";
+import X from "../../public/icons/x.svg?raw";
+import Youtube from "../../public/icons/youtube.svg?raw";
+import Facebook from "../../public/icons/facebook.svg?raw";
+import Instagram from "../../public/icons/instagram.svg?raw";
+const username = "gokulvenkats";
+const socialMedia = [
+  {
+    name: "Linked In",
+    url: `https://linkedin.com/in/${username}`,
+    icon: LinkedIn,
+    show: true,
+  },
+  {
+    name: "Github",
+    url: `https://github.com/${username}`,
+    icon: Github,
+    show: true,
+  },
+  {
+    name: "X Twitter",
+    url: `https://x.com/${username}`,
+    icon: X,
+    show: true,
+  },
+  {
+    name: "Youtube",
+    url: `https://www.youtube.com/@${username}`,
+    icon: Youtube,
+    show: true,
+  },
+  {
+    name: "Facebook",
+    url: "",
+    icon: Facebook,
+    show: false,
+  },
+  {
+    name: "Instagram",
+    url: "",
+    icon: Instagram,
+    show: false,
+  },
+];
+---
+
+<div class="flex justify-center items-center gap-6 my-6">
+  {
+    socialMedia.map((link) => (
+      <a
+        href={link.url}
+        target="_blank"
+        class={link.show ? "text-gray-700" : "hidden"}
+        aria-label={link.name}
+      >
+        <Fragment set:html={link.icon} />
+      </a>
+    ))
+  }
+</div>
