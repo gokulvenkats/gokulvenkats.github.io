@@ -10,23 +10,29 @@ interface Props {
 }
 
 const { title, description, day, date, month, year, href } = Astro.props;
-import DoubleArrow from "../../public/icons/double_arrow_right.svg?raw";
+import DoubleArrow from "../../public/open_in_new.svg?raw";
 ---
 
-<a href={href}>
-  <div class="grid grid-rows-2 grid-flow-col">
-    <div class="row-span-2">
-      <div class="flex flex-col items-center">
-        <span class="text-2xl">{date}</span>
-        <span class="text-sm">{month} {year}</span>
-      </div>
-    </div>
-    <div class="col-span-2 text-lg">
-      {title}
-    </div>
-    <div class="col-span-2 text-sm">
-		<!-- <Fragment set:html={DoubleArrow} /> -->
-		{description}
-    </div>
-  </div>
-</a>
+<table class="border-collapse">
+  <tbody>
+    <tr>
+      <td class="w-1/4 sm:w-/1/6">
+        <div class="flex flex-col items-center">
+          <span class="text-xl">{date}</span>
+          <span class="text-sm">{month} {year}</span>
+        </div>
+      </td>
+      <td class="w-3/4 sm:w-5/6">
+        <a href={href}>
+          <div class="flex flex-row text-lg">
+            <span>{title}</span>&nbsp;
+            <span class="h-1"><Fragment set:html={DoubleArrow} /></span>
+          </div>
+          <div class="text-sm line-clamp-1">
+            {description}
+          </div>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

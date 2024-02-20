@@ -1,9 +1,12 @@
+---
+const now = new Date()
+---
 <footer class="mt-auto flex w-full flex-col items-center justify-center gap-y-2 py-1 text-center align-top font-semibold text-gray-600 dark:text-gray-400 sm:flex-row sm:justify-between sm:text-xs">
-  <div class="max-sm:hidden">© Gokul 2024.</div>
+  <div class="max-sm:hidden pl-5">© Gokul 2024.</div>
   <nav class="flex gap-x-2 sm:gap-x-0 sm:divide-x sm:divide-gray-500">
     <a href="/" class="px-4 py-2">Home</a>
     <a href="/about/" class="px-4 py-2">About</a>
     <a href="/blog/" class="px-4 py-2">Blog</a>
   </nav>
-  <div class="sm:hidden text-xs">© Gokul 2024.</div>
+  <div class="sm:hidden text-xs">© Gokul {now.getFullYear()}.</div>
 </footer>
