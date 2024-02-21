@@ -22,7 +22,7 @@ const { title } = Astro.props;
   </head>
   <body>
     <div class="font-mono m-1 sm:m-auto max-w-screen-lg theme-toggle">
-      <div class="shadow-lg ring-1 ring-black/5 flex flex-col h-screen backdrop-blur-xl bg-[hsla(0,0%,100%,0.55)]">
+      <div class="shadow-lg ring-1 ring-black/5 flex flex-col h-screen backdrop-blur-xl bg-[hsla(0,0%,100%,0.55)] dark:bg-black/20">
         <Header title={title} />
         <slot />
         <Footer />
