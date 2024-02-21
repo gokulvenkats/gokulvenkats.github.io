@@ -7,8 +7,7 @@ body {
       #22c1c3,
       #eeaeca,
       #94bbe9,
-      #fdbb2d
-    );
+      #fdbb2d);
   background-size: 800% 200%;
   animation: gradient 15s ease infinite;
   /* height: 100vh; */
@@ -28,8 +27,16 @@ body {
   }
 }
 
-.name{
-  @apply text-2xl font-extrabold leading-normal text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text;
+.gradient-text {
+  @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text;
+}
+
+.theme-toggle {
+  @apply text-gray-700 dark:text-slate-100  selection:bg-gray-700 selection:text-slate-100;
+}
+
+.name {
+  @apply text-2xl font-extrabold leading-normal text-center ;
 }
 
 .title {

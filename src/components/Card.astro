@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { title, description, day, date, month, year, href } = Astro.props;
-import DoubleArrow from "../../public/open_in_new.svg?raw";
+import OpenNew from "../../public/icons/open_in_new.svg?raw";
 ---
 
 <table class="border-collapse">
@@ -26,7 +26,7 @@ import DoubleArrow from "../../public/open_in_new.svg?raw";
         <a href={href}>
           <div class="flex flex-row text-lg">
             <span>{title}</span>&nbsp;
-            <span class="h-1"><Fragment set:html={DoubleArrow} /></span>
+            <span class="h-5"><Fragment set:html={OpenNew} /></span>
           </div>
           <div class="text-sm line-clamp-1">
             {description}

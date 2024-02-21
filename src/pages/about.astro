@@ -1,8 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import Timeline from "../components/Timeline.astro";
-import GokulBW from "../../public/gokul-bw.jpg";
-import Gokul from "../../public/gokul.jpeg";
+import Gokul from "../../public/gokul.jpg";
 
 const works = {
   companies: [
@@ -27,10 +26,10 @@ const works = {
 <!-- mx-auto overflow-auto scroll-auto -->
 <SiteLayout title="About Me">
   <div class="mx-5 sm:mx-16">
-    <article class="flex flex-col space-y-6 selection:bg-black selection:text-white">
+    <article class="flex flex-col space-y-6">
       <section class="space-y-2">
         <img
-          class="float-left w-32 rounded-full mx-3"
+          class="float-left w-32 rounded-full mx-3 drop-shadow-lg cursor-pointer filter dark:grayscale"
           src={Gokul.src}
         />
         <p class="para-left">
@@ -54,7 +53,9 @@ const works = {
       </section>
       <section class="space-y-2">
         <h2 class="subtitle">Work Experience</h2>
+        <div class="p-5">
         <Timeline works={works} />
+      </div>
       </section>
       <section class="space-y-2">
         <h2 class="subtitle">Education<h2>
