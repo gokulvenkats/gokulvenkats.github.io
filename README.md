@@ -1,1 +1,2 @@
 # Gokul Portfolio
+[![Deploy to GitHub Pages](https://github.com/gokulvenkats/gokulvenkats.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/gokulvenkats/gokulvenkats.github.io/actions/workflows/deploy.yml)

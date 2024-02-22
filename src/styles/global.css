@@ -1,3 +1,5 @@
+@import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
+
 body {
   background: linear-gradient(-65deg,
       #ee7752,
@@ -35,22 +37,30 @@ body {
   @apply text-gray-700 dark:text-slate-100  selection:bg-gray-700 selection:text-slate-100;
 }
 
+.wave-line {
+  @apply underline decoration-slate-50 decoration-wavy;
+}
+
 .name {
-  @apply text-2xl font-extrabold leading-normal text-center ;
+  @apply text-2xl font-black leading-normal text-center tracking-normal;
 }
 
 .title {
-  @apply text-center text-4xl font-bold underline decoration-slate-50 decoration-wavy;
+  @apply text-center text-2xl font-bold wave-line;
 }
 
 .subtitle {
-  @apply text-xl font-semibold underline decoration-slate-50 decoration-wavy;
+  @apply text-xl font-bold wave-line;
 }
 
 .para {
-  @apply text-base font-medium text-justify tracking-normal leading-relaxed;
+  @apply text-sm sm:text-base font-normal text-justify tracking-normal leading-relaxed;
 }
 
-.para-left {
-  @apply text-base font-medium text-justify tracking-normal leading-relaxed;
+.para-center {
+  @apply text-sm sm:text-base font-normal text-center tracking-normal leading-relaxed;
+}
+
+.lead {
+  @apply text-xs sm:text-sm font-semibold tracking-tight leading-tight;
 }

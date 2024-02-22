@@ -1,23 +1,31 @@
 ---
 const { title } = Astro.props;
 import Theme from "@components/Theme.astro";
+
+const showBackBtn = title ? true : false;
+
 ---
 
-
-<header class="p-8">
-<div class="flex justify-between justify-items-center content-center items-center">
-  <div>
-    <a href="/">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-6 h-6 md:w-8 md:h-8">
-      <path fill="currentColor" d="m332.666-427.667 222 222.001L480-132 132-480l348-348.667 74.666 74.333-222 222.001h496.001v104.666H332.666Z"/>
-    </svg>
-  </a>
-  </div>
-  <div>
-    <h1 class="title">{title}</h1>
-  </div>
-  <div>
-    <Theme/>
-  </div>
+<header class="p-4 md:p-8">
+  <div class="flex justify-between justify-items-center content-center items-center">
+    <div>
+      {
+        showBackBtn ? (
+          <a href="/">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-6 h-6 md:w-8 md:h-8">
+              <path fill="currentColor"d="m332.666-427.667 222 222.001L480-132 132-480l348-348.667 74.666 74.333-222 222.001h496.001v104.666H332.666Z"/>
+            </svg>
+          </a>
+        ) : (
+          ""
+        )
+      }
+    </div>
+    <div>
+      <h1 class="title  line-clamp-1">{title}</h1>
+    </div>
+    <div>
+      <Theme />
+    </div>
   </div>
 </header>

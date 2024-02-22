@@ -9,8 +9,10 @@ import Download from "@images/download.svg?raw"
 {
     works.map((company: any) => (
     <li class="mb-10 ms-6 text-left">            
-        <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-            <Fragment set:html={Office} />
+        <span class="absolute flex items-center justify-center size-5 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
+            <span class="size-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true">
+                <Fragment class="" set:html={Office} />
+            </span>
         </span>
         <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">
             {company.name}
@@ -28,8 +30,9 @@ import Download from "@images/download.svg?raw"
         {
             company.resume ?
             <a href={Resume} class="inline-flex mb-2 items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-slate-100 dark:border-gray-600 dark:hover:text-gray-300 dark:hover:bg-gray-700 dark:focus:ring-gray-700" download="gokul_resume">
-                <Fragment set:html={Download} />
-                Download Resume
+                <span class="w-3.5 h-3.5 me-2.5" aria-hidden="true" >
+                    <Fragment set:html={Download} />
+                </span> Download Resume
             </a>
             : ""
         }

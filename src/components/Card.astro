@@ -13,22 +13,22 @@ const { title, description, day, date, month, year, href } = Astro.props;
 import OpenNew from "@images/open_in_new.svg?raw";
 ---
 
-<table class="border-collapse">
+<table class="border-collapse m-2">
   <tbody>
     <tr>
       <td class="w-1/4 sm:w-/1/6">
         <div class="flex flex-col items-center">
-          <span class="text-xl">{date}</span>
-          <span class="text-sm">{month} {year}</span>
+          <span class="text-xl font-medium">{date}</span>
+          <span class="text-sm font-normal">{month} {year}</span>
         </div>
       </td>
       <td class="w-3/4 sm:w-5/6">
         <a href={href}>
           <div class="flex flex-row text-lg">
-            <span>{title}</span>&nbsp;
+            <span class="font-medium line-clamp-1">{title}</span>&nbsp;
             <span class="h-5"><Fragment set:html={OpenNew} /></span>
           </div>
-          <div class="text-sm line-clamp-1">
+          <div class="text-sm font-normal line-clamp-1">
             {description}
           </div>
         </a>
