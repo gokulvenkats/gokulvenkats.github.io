@@ -1,15 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Socials from "../components/Socials.astro";
-import Chips from "../components/Chips.astro";
-import Card from "../components/Card.astro";
+import Layout from "@layouts/Layout.astro";
+import Socials from "@components/Socials.astro";
+import Chips from "@components/Chips.astro";
+import Card from "@components/Card.astro";
 import { getCollection } from "astro:content";
 const allblogs = await getCollection("blogs");
 
 const pageTitle = "";
 import Gokul from "../../public/gokul-main.png";
-
-import arrowOutward from "/arrow_outward.svg?url";
 ---
 
 <Layout title={pageTitle}>

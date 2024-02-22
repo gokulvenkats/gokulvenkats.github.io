@@ -1,13 +1,13 @@
 ---
 const { works } = Astro.props;
-import Resume from "/src/content/resume/Gokul_Venkat_Resume.pdf";
-import Office from "/public/icons/office.svg?raw"
-import Download from "/public/icons/download.svg?raw"
+import Resume from "@constants/Gokul_Venkat_Resume.pdf";
+import Office from "@images/office.svg?raw"
+import Download from "@images/download.svg?raw"
 ---
 
 <ol class="relative border-s border-gray-200 dark:border-gray-700">                  
 {
-    works.companies.map((company: any) => (
+    works.map((company: any) => (
     <li class="mb-10 ms-6 text-left">            
         <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
             <Fragment set:html={Office} />
@@ -24,7 +24,7 @@ import Download from "/public/icons/download.svg?raw"
         </h3>
         <time class="block mb-2 text-xs font-normal leading-none">{company.yearOfWork} @ {company.location}</time>
         <time class="block mb-2 text-sm font-normal leading-none">{company.role}</time>
-        <p class="mb-4 text-base font-normal">{company.description}</p>
+        <p class="mb-2 text-base font-normal">{company.description}</p>
         {
             company.resume ?
             <a href={Resume} class="inline-flex mb-2 items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-slate-100 dark:border-gray-600 dark:hover:text-gray-300 dark:hover:bg-gray-700 dark:focus:ring-gray-700" download="gokul_resume">
@@ -33,22 +33,6 @@ import Download from "/public/icons/download.svg?raw"
             </a>
             : ""
         }
-        <div class="border border-gray-100 rounded-lg dark:border-gray-700">
-            <ol class="divide-y divider-gray-200 dark:divide-gray-700">
-                {
-                    company.projects.map((project: any) => (
-                    <li>
-                        <div class="items-center block p-2 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700">
-                            <div>
-                            <div class="text-base font-medium">{project.name}</div>
-                            <div class="text-sm font-normal">{project.description}</div>
-                            </div>
-                        </div>
-                    </li>
-                    ))
-                }
-            </ol>
-        </div>
     </li>
     ))
 }

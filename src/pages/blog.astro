@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import SiteLayout from "../layouts/SiteLayout.astro";
+import SiteLayout from "@layouts/SiteLayout.astro";
 const allblogs = await getCollection("blogs");
-import Card from "../components/Card.astro";
+import Card from "@components/Card.astro";
 ---
 
 <SiteLayout title="Blogs">

@@ -1,79 +1,14 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
-import Timeline from "../components/Timeline.astro";
-import Gokul from "../../public/gokul.jpg";
-
-const works = {
-  companies: [
-    {
-      name: "Cisco Systems, Inc.",
-      yearOfWork: "Started on July 2022",
-      role: "Software Engineer",
-      location: "Bengaluru",
-      presentlyWorking: true,
-      description: "As a Site Reliability Engineer (SRE), I optimize the performance and reliability of the infrastructure, ensuring its stability, scalability, and efficiency.",
-      resume: true,
-      projects: [
-        {
-          name: "Cisco Catalyst SD-WAN Solution — Cisco Systems Inc., USA.",
-          description: "Championed automation scripts for health checks and performance monitoring. Collaboratively tackled complex WAN performance issues, boosting application uptime, robust configuration management, driving significant error reduction in the system and user experience. Built resilient infrastructure for multi-cloud SD-WAN solutions, ensuring high availability and disaster recovery.",
-        }
-      ],
-    },
-    {
-      name: "Wipro Technologies Ltd.",
-      yearOfWork: "December 2020 - July 2022",
-      role: "Senior Software Engineer",
-      location: "Chennai",
-      presentlyWorking: false,
-      description: "Built and deployed an ETL pipeline framework with expertise in managing diverse data formats and streamlining processing workflows.",
-      resume: false,
-      projects: [
-        {
-          name: "Data Engineering — Apple Inc., USA.",
-          description: "Developing ETL pipelines for data sources, coordinating processes with workers, utilizing shared libraries, and a universal secrets manager. Employing MongoDB for queue and time-series data, monitoring pipeline metrics with Prometheus & Grafana, and visualizing target data on Tableau.",
-        }
-      ],
-    },
-    {
-      name: "Elait IT Technologies Pvt Ltd.",
-      yearOfWork: "November 2015 - November 2020",
-      role: "Technology Lead",
-      location: "Chennai",
-      presentlyWorking: false,
-      description: "Built full-stack web applications and REST API, specializing in design, development, and deployment of enterprise-level applications, with skills in UI/UX prototyping and managing cloud infrastructure.",
-      resume: false,
-      projects: [
-        {
-          name: "Scala Transformation Parser — Santander Bank, London, UK.",
-          description: "Built generic parsers using Antlr4 to translate structured scala & spark transformation programs for data flow analysis or Lineage & code audit.",
-        },
-        {
-          name: "Digital Term Life Insurance — Lifefy Crop., Miami, Florida, USA.",
-          description: "Developed a robust web service REST API in Python paired with an Angular UI for seamless online life insurance provisioning. Interfaced with diverse APIs for pricing, payment gateways, e-signatures, etc. Efficiently managed data using MySQL.",
-        },
-        {
-          name: "Elait Business Portal — Elait IT Technologies Pvt Ltd, Chennai.",
-          description: "Design & build office productivity web apps with React to manage project & efforts, HR & finance management and integrating with Microsoft O365 services & Python REST API to manage the process flow.",
-        },
-        {
-          name: "Avance 360 — Madras Dyslexia Association, Chennai.",
-          description: "Digitize the existing workflow to capture the student’s information across the various activities of dyslexic therapy while also enabling relevant information sharing across multiple stakeholders and reporting the student’s progress.",
-        },
-        {
-          name: "Smart Report Cards — Report Bee, Chennai.",
-          description: "Developed a pilot system for educational progress analytics, using Python's Matplotlib library to visualize data from multiple Microsoft SQL Servers. The system tracks academic progression and holistic learning through student grades and teacher mentorship.",
-        }
-      ],
-    },
-  ],
-};
+import SiteLayout from "@layouts/SiteLayout.astro";
+import Timeline from "@components/Timeline.astro";
+import Projects from "@components/Projects.astro";
+import Gokul from "@images/gokul.jpg";
+import {companies} from "@constants/works.json";
 
 const then: any = new Date("2015-11-15");
 const now: any = new Date();
 const totalYearOfExp: any = new Date(now - then).getFullYear() - 1970;
 ---
-
 <!-- mx-auto overflow-auto scroll-auto -->
 <SiteLayout title="About Me">
   <div class="mx-5 sm:mx-16">
@@ -104,12 +39,12 @@ const totalYearOfExp: any = new Date(now - then).getFullYear() - 1970;
       <section class="space-y-2">
         <h2 class="subtitle">Work Experience</h2>
         <div class="p-4">
-          <Timeline works={works} />
+          <Timeline works={companies} />
         </div>
       </section>
       <section class="space-y-2">
         <h2 class="subtitle">Projects</h2>
-        
+        <Projects projects={companies} />
       </section>
       </section>
       <section class="space-y-2">
