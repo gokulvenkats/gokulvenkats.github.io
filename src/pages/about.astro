@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import SiteLayout from "@layouts/SiteLayout.astro";
 import Timeline from "@components/Timeline.astro";
 import Projects from "@components/Projects.astro";
+import Chips from "@components/Chips.astro";
 import Gokul from "@images/gokul.jpg";
 import {companies} from "@constants/works.json";
 
@@ -14,11 +16,14 @@ const totalYearOfExp: any = new Date(now - then).getFullYear() - 1970;
   <div class="mx-5 sm:mx-16">
     <article class="flex flex-col space-y-6">
       <section class="space-y-2">
-        <img
-          class="float-left w-32 rounded-full mx-3 drop-shadow-lg cursor-pointer filter dark:grayscale"
-          src={Gokul.src}
+        <Image 
+          src={Gokul} 
+          alt="Gokul's  Image." 
+          class="float-left w-28 sm:w-32 rounded-full m-2 drop-shadow-lg cursor-pointer filter dark:grayscale" 
+          decoding="async"
+          loading="lazy" 
         />
-        <p class="para-left">
+        <p class="para">
           Thanks for dropping by and checking out! Innovative and
           deadline-driven Programmer with {totalYearOfExp}+ years of experience
           designing and developing enterprise level applications and APIs with
@@ -27,8 +32,7 @@ const totalYearOfExp: any = new Date(now - then).getFullYear() - 1970;
         <p class="para">
           Anyway, this is probably a good place to stop. There’s more to my life
           than what I feel comfortable sharing here, but that’s about the gist
-          of my background and interests. If you made it this far, cool! You’re
-          still awake! Maybe we can chat sometime and get to know each other.
+          of my background and interests.
         </p>
         <p class="para">
           At the end of the day, I’m just a Real Human Bean who enjoys doing
@@ -47,9 +51,10 @@ const totalYearOfExp: any = new Date(now - then).getFullYear() - 1970;
         <Projects projects={companies} />
       </section>
       </section>
-      <section class="space-y-2">
-        <h2 class="subtitle">Education</h2>
-      </section>
+      <!-- <section class="space-y-2">
+        <h2 class="subtitle">Skills</h2>
+        <Chips />
+      </section> -->
     </article>
   </div>
 </SiteLayout>

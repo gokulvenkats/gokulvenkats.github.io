@@ -5,14 +5,14 @@ const { projects } = Astro.props;
 {
     projects.map((project: any) => (
         // <div class="border border-gray-100 rounded-lg dark:border-gray-700">
-            <div>
+        <div> 
             <time class="text-base font-semibold wave-line text-gray-900 dark:text-white">
                 {project.name}
             </time>
             <ol class="divide-y divider-gray-200 dark:divide-gray-700">
                 {project.projects.map((work: any) => (
                     <li>
-                        <div class="items-center block p-2 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <div class="items-center block p-2 sm:flex">
                             <div>
                                 <div class="text-base font-semibold tracking-tight">
                                     {work.name}
