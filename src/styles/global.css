@@ -57,7 +57,7 @@
 }
 
 .wave-line {
-  @apply underline decoration-slate-50 decoration-wavy;
+  @apply underline decoration-gray-700 decoration-wavy dark:decoration-slate-50;
 }
 
 .name {
@@ -81,5 +81,5 @@
 }
 
 .lead {
-  @apply text-xs sm:text-sm font-semibold tracking-tight leading-tight;
+  @apply text-sm sm:text-sm font-semibold tracking-tight leading-tight;
 }
