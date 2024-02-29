@@ -10,10 +10,11 @@ import {companies} from "@constants/works.json";
 const then: any = new Date("2015-11-15");
 const now: any = new Date();
 const totalYearOfExp: any = new Date(now - then).getFullYear() - 1970;
+const skills = ["python"]
 ---
 <!-- mx-auto overflow-auto scroll-auto -->
 <SiteLayout title="About Me">
-  <div class="mx-5 sm:mx-16">
+  <div class="mx-5 sm:mx-16 mb-16">
     <article class="flex flex-col space-y-6">
       <section class="space-y-2">
         <Image 
@@ -24,20 +25,16 @@ const totalYearOfExp: any = new Date(now - then).getFullYear() - 1970;
           loading="lazy" 
         />
         <p class="para">
-          Thanks for dropping by and checking out! Innovative and
-          deadline-driven Programmer with {totalYearOfExp}+ years of experience
-          designing and developing enterprise level applications and APIs with
-          Python & JavaScript
+          Hey there, thanks for swinging by! With over {totalYearOfExp}+ years of programming prowess, 
+          I've engineered solutions for industry giants like Cisco and Apple, and crafted transformative apps.
+          From optimizing WAN performance to revolutionizing insurance provisioning, I've embarked on a multitude of professional endeavors, including the construction of parsers, mastery of data warehousing, and the adept conjuring of data virtualization solutions. These endeavors, reminiscent of meticulously crafted mechanisms, underscore my dedication to achieving excellence and fostering innovation within the realm of technology.
+          I'm your go-to guy for all things tech. Let's collaborate and turn ideas into digital dreams!
         </p>
         <p class="para">
-          Anyway, this is probably a good place to stop. There’s more to my life
-          than what I feel comfortable sharing here, but that’s about the gist
-          of my background and interests.
-        </p>
-        <p class="para">
-          At the end of the day, I’m just a Real Human Bean who enjoys doing
-          real human things. If that sounds like your cup of tea, get in
-          touch—I’d love to hear from you!
+          When I'm not glued to my keyboard, you can catch me chasing the perfect shot with my camera, trying to convince pixels to pose. 
+          Anyway, that's the scoop on me, but let's face it, there's more to life than code. 
+          At the end of the day, I'm just a human who enjoys doing real human things. 
+          If you're up for some tech talk or just want to share a good laugh, hit me up—I promise I won't byte!"
         </p>
       </section>
       <section class="space-y-2">
@@ -51,9 +48,14 @@ const totalYearOfExp: any = new Date(now - then).getFullYear() - 1970;
         <Projects projects={companies} />
       </section>
       </section>
+      <section class="space-y-2">
+        <h2 class="subtitle">Education</h2>
+        <p class="text-base font-semibold tracking-tight">Bachelor of Engineering in Electronics & Communications</p>
+        <p class="text-sm font-semibold tracking-tight">Anna University &mdash; Graduated on May 2015</p>
+      </section>
       <!-- <section class="space-y-2">
-        <h2 class="subtitle">Skills</h2>
-        <Chips />
+        <h2 class="subtitle">Education</h2>
+        <Chips chips={skills} />
       </section> -->
     </article>
   </div>
