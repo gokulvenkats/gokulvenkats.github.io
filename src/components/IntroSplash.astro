@@ -318,6 +318,10 @@ z"
 </div>
 
 <style>
+  :global(html.no-intro) .intro-splash-overlay {
+    display: none !important;
+  }
+
   .intro-splash-overlay {
     position: fixed;
     inset: 0;
@@ -565,6 +569,29 @@ z"
 
 <script is:inline>
   (() => {
+    // Check if user has already seen the intro splash on a previous load
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const forceIntro = urlParams.has("intro") || urlParams.has("replay");
+      const hasSeen = !forceIntro && (
+        (typeof localStorage !== "undefined" && localStorage.getItem("gokul_intro_seen")) ||
+        (typeof sessionStorage !== "undefined" && sessionStorage.getItem("gokul_intro_seen"))
+      );
+
+      const splashEl = document.getElementById("intro-splash");
+      if (hasSeen) {
+        if (splashEl) {
+          splashEl.style.display = "none";
+          splashEl.remove();
+        }
+        return;
+      }
+
+      // First time load: mark as seen so other loads will NOT display it
+      if (typeof localStorage !== "undefined") localStorage.setItem("gokul_intro_seen", "true");
+      if (typeof sessionStorage !== "undefined") sessionStorage.setItem("gokul_intro_seen", "true");
+    } catch (e) {}
+
     const splash = document.getElementById("intro-splash");
     if (!splash) return;
 

@@ -66,6 +66,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gokulven
         document.documentElement.classList.remove("dark");
       }
       localStorage.setItem("theme", theme);
+
+      // Check if user has already seen the first-time intro splash
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const forceIntro = urlParams.has("intro") || urlParams.has("replay");
+        const hasSeenIntro = !forceIntro && (
+          (typeof localStorage !== "undefined" && localStorage.getItem("gokul_intro_seen")) ||
+          (typeof sessionStorage !== "undefined" && sessionStorage.getItem("gokul_intro_seen"))
+        );
+        if (hasSeenIntro) {
+          document.documentElement.classList.add("no-intro");
+        }
+      } catch (e) {}
     </script>
   </head>
   <body class="min-h-screen py-3 sm:py-6 md:py-10 px-2 sm:px-4 md:px-8 flex flex-col justify-center items-center antialiased">
