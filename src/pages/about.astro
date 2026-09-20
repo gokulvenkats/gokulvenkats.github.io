@@ -262,6 +262,13 @@ const skillCategories = [
     ],
   },
 ];
+
+// Dynamic calculation of career experience starting from November 2015
+const careerStartDate = new Date("2015-11-01");
+const yearsOfExperience = Math.floor(
+  (Date.now() - careerStartDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25)
+);
+const experienceYears = `${yearsOfExperience}+`;
 ---
 
 <SiteLayout
@@ -289,7 +296,7 @@ const skillCategories = [
         </div>
 
         <p class="para">
-          I am a Software Engineer and Developer with over 8 years of experience designing, architecting, and operating scalable systems, microservices, and distributed backends.
+          I am a Software Engineer and Developer with over {experienceYears} years of experience designing, architecting, and operating scalable systems, microservices, and distributed backends.
         </p>
         <p class="para">
           Currently at Cisco IT, I combine core software engineering with AI engineering and operations (AIOps) — managing mission-critical enterprise network platforms (Catalyst Center, Cisco NSO, Firewall Management Center, Splunk Observability, ThousandEyes, Infoblox, Meraki) as Customer Zero. I architect automation workflows for policy updates, lead platform security and enterprise RBAC governance, and drive the integration of AI capabilities across network operations. Previously, I engineered high-availability SD-WAN infrastructure at Cisco, built scalable data engineering pipelines at Apple Inc. (via Wipro), and led full-stack software development at Elait IT.

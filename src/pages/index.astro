@@ -3,8 +3,15 @@ import Layout from "../layouts/Layout.astro";
 import Socials from "../components/Socials.astro";
 import Chips from "../components/Chips.astro";
 
+// Dynamic calculation of career experience starting from November 2015
+const careerStartDate = new Date("2015-11-01");
+const yearsOfExperience = Math.floor(
+  (Date.now() - careerStartDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25)
+);
+const experienceYears = `${yearsOfExperience}+`;
+
 const pageTitle = "Gokul Venkatesan — Software Engineer & AI Operations";
-const pageDescription = "Software Engineer with 8+ years of experience in scalable distributed systems, microservices, AI engineering, and intelligent platform operations (AIOps) at Cisco IT.";
+const pageDescription = `Software Engineer with ${experienceYears} years of experience in scalable distributed systems, microservices, AI engineering, and intelligent platform operations (AIOps) at Cisco IT.`;
 
 const coreSkills = [
   "Python",
@@ -79,7 +86,7 @@ const highlights = [
         </div>
         <h1 class="name">Gokul Venkatesan</h1>
         <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
-          Software Engineer with 8+ years of experience designing, architecting, and optimizing scalable systems. Focused on modern full-stack development, Generative AI engineering, and intelligent operations (AIOps) for enterprise platforms.
+          Software Engineer with {experienceYears} years of experience designing, architecting, and optimizing scalable systems. Focused on modern full-stack development, Generative AI engineering, and intelligent operations (AIOps) for enterprise platforms.
         </p>
       </div>
 
@@ -111,26 +118,6 @@ const highlights = [
         >
           <span>Contact Me</span>
         </a>
-      </div>
-
-      <!-- Quick Impact Matrix -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 w-full max-w-2xl pt-2">
-        <div class="glass-card p-3 sm:p-3.5 text-center">
-          <div class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">8+ Years</div>
-          <div class="text-[11px] text-slate-600 dark:text-slate-400">Software & Systems</div>
-        </div>
-        <div class="glass-card p-3 sm:p-3.5 text-center">
-          <div class="text-base sm:text-lg font-bold text-sky-600 dark:text-sky-400">Cisco IT</div>
-          <div class="text-[11px] text-slate-600 dark:text-slate-400">AIOps & SRE</div>
-        </div>
-        <div class="glass-card p-3 sm:p-3.5 text-center">
-          <div class="text-base sm:text-lg font-bold text-slate-900 dark:text-white">Full-Stack</div>
-          <div class="text-[11px] text-slate-600 dark:text-slate-400">Python • APIs • Cloud</div>
-        </div>
-        <div class="glass-card p-3 sm:p-3.5 text-center">
-          <div class="text-base sm:text-lg font-bold text-purple-600 dark:text-purple-400">6 Verified</div>
-          <div class="text-[11px] text-slate-600 dark:text-slate-400">GenAI, Cloud & ITIL</div>
-        </div>
       </div>
 
       <!-- Tech Stack Badges -->
