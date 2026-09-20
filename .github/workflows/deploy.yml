@@ -48,6 +48,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Wait for any concurrent branch builder
+        run: sleep 25
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
