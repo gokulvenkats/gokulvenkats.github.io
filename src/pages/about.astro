@@ -7,23 +7,62 @@ const works = {
   companies: [
     {
       name: "Cisco Systems, Inc.",
-      role: "Software Engineer",
-      yearOfWork: "July 2022 – Present",
+      role: "Site Reliability Engineer — Cisco IT",
+      yearOfWork: "September 2024 – Present",
       location: "Bengaluru, India",
       presentlyWorking: true,
       description:
-        "As a Site Reliability Engineer (SRE), I optimize the performance and reliability of the infrastructure, ensuring its stability, scalability, and efficiency across global SD-WAN deployments.",
+        "Serving as a Site Reliability Engineer within Cisco IT, managing mission-critical enterprise network platforms, driving Customer Zero initiatives, platform security & RBAC governance, and leading controller automation and AI enablement.",
       bullets: [
-        "Championed automation scripts for health checks and proactive performance monitoring.",
-        "Collaboratively tackled complex WAN performance issues and upgrades, boosting application uptime and driving error reduction.",
-        "Built resilient infrastructure for multi-cloud SD-WAN solutions, ensuring high availability and disaster recovery on controllers.",
+        "Managing core Cisco IT network platforms: Catalyst Center (DNA-C), ACL Manager, Assurance Platform, Infoblox, Splunk Observability Cloud, Firewall Management Center (FMC), Cisco NSO, Telemetry Broker, Meraki, and ThousandEyes.",
+        "Acting as Customer Zero, leading enterprise RBAC architecture, and strengthening platform security posture.",
+        "Responsible for platform upgrade lifecycle management, consistently maintaining software versions up to date or at N-1.",
+        "Troubleshooting complex network/system incidents, managing generic account and access permissions, SSL/TLS certificate lifecycle management, and validating continuous platform resilience.",
+        "Automating network policy changes and upgrade workflows for Cisco controllers.",
+        "Integrating systems with AI and driving platform AI enablement initiatives.",
+      ],
+      projects: [
+        {
+          name: "Cisco IT Network Platforms & AI Enablement",
+          client: "Cisco IT Global Infrastructure",
+          description:
+            "Managing core enterprise controllers and observability suites (Catalyst Center, Splunk Observability, ThousandEyes, NSO, FMC), automating controller upgrade pipelines, and leading platform AI integrations.",
+        },
+      ],
+      technologies: [
+        "Catalyst Center (DNA-C)",
+        "Splunk Observability",
+        "ThousandEyes",
+        "Cisco NSO",
+        "Meraki",
+        "Infoblox",
+        "Firewall Management Center (FMC)",
+        "Python",
+        "AI Enablement",
+        "SSL/TLS Lifecycle",
+        "RBAC & Security",
+        "Platform Resilience",
+      ],
+    },
+    {
+      name: "Cisco Systems, Inc.",
+      role: "Software Engineer / SRE — SD-WAN",
+      yearOfWork: "July 2022 – September 2024",
+      location: "Bengaluru, India",
+      presentlyWorking: false,
+      description:
+        "Engineered high-availability infrastructure, automated health monitoring, and scaling for global Cisco Catalyst SD-WAN controller solutions.",
+      bullets: [
+        "Championed automation scripts for proactive health checks and real-time performance telemetry across SD-WAN controllers.",
+        "Collaboratively resolved complex WAN edge and controller performance bottlenecks, boosting application uptime and reducing operational errors.",
+        "Built resilient multi-cloud SD-WAN controller environments ensuring disaster recovery and continuous high availability.",
       ],
       projects: [
         {
           name: "Cisco Catalyst SD-WAN Solution",
           client: "Cisco Systems Inc., USA",
           description:
-            "Enhanced SD-WAN controller infrastructure to adapt to evolving requirements, optimized health check automation, and built multi-cloud disaster recovery architectures.",
+            "Enhanced SD-WAN controller infrastructure, optimized automated health monitoring, and architected multi-cloud disaster recovery for global controller fleets.",
         },
       ],
       technologies: [
@@ -32,8 +71,9 @@ const works = {
         "Docker",
         "Kubernetes",
         "Linux / Ubuntu",
-        "SRE & High Availability",
         "Prometheus",
+        "High Availability",
+        "Disaster Recovery",
       ],
     },
     {
@@ -157,56 +197,55 @@ const certifications = [
 
 const skillCategories = [
   {
-    category: "Languages & Core",
+    category: "Network Platforms & Architecture",
+    skills: [
+      "Catalyst Center (DNA-C)",
+      "Cisco NSO",
+      "Firewall Management Center (FMC)",
+      "ThousandEyes",
+      "Meraki",
+      "Infoblox",
+      "ACL Manager",
+      "Telemetry Broker",
+      "Cisco Catalyst SD-WAN",
+    ],
+  },
+  {
+    category: "SRE, Security & Observability",
+    skills: [
+      "Splunk Observability Cloud",
+      "Prometheus & Grafana",
+      "RBAC Governance",
+      "SSL/TLS Lifecycle Management",
+      "Platform Resilience Validation",
+      "Customer Zero Best Practices",
+      "Linux / Ubuntu Systems",
+      "Tableau Telemetry",
+    ],
+  },
+  {
+    category: "Languages & AI Enablement",
     skills: [
       "Python",
-      "TypeScript",
-      "JavaScript",
-      "Node.js",
+      "AI System Integrations",
+      "AI Enablement",
+      "TypeScript & JavaScript",
       "Bash / Shell",
-      "SQL",
+      "SQL & PostgreSQL",
       "MongoDB (NoSQL)",
-      "C",
+      "RESTful APIs",
     ],
   },
   {
-    category: "Frameworks & Libraries",
-    skills: [
-      "Django",
-      "Flask",
-      "Falcon",
-      "React",
-      "Angular",
-      "Pandas",
-      "Astro",
-      "Tailwind CSS",
-    ],
-  },
-  {
-    category: "Cloud, DevOps & SRE",
+    category: "Cloud, Containers & DevOps",
     skills: [
       "Docker",
       "Kubernetes",
       "AWS",
       "Azure",
-      "CI/CD",
-      "SD-WAN",
-      "Linux / Ubuntu",
-      "Nginx",
-      "Apache httpd",
-      "uWSGI",
-    ],
-  },
-  {
-    category: "Observability & SCM",
-    skills: [
-      "Prometheus",
-      "Grafana",
-      "Splunk",
-      "Tableau",
-      "GitHub & GitLab",
+      "CI/CD Pipelines",
+      "Git & GitHub / GitLab",
       "Azure DevOps",
-      "Figma",
       "Agile / Scrum",
     ],
   },
@@ -215,7 +254,7 @@ const skillCategories = [
 
 <SiteLayout
   title="About — Gokul Venkatesan"
-  description="Background, career history, certifications, technical competencies, and education of Gokul Venkatesan, Senior Software Engineer & SRE."
+  description="Background, career history, certifications, technical competencies, and education of Gokul Venkatesan, Site Reliability Engineer & Software Engineer at Cisco IT."
 >
   <div class="max-w-3xl mx-auto space-y-12">
     <!-- Executive Summary -->
@@ -238,10 +277,10 @@ const skillCategories = [
         </div>
 
         <p class="para">
-          I am a Site Reliability Engineer and Software Engineer with over 8 years of experience designing, scaling, and operating mission-critical distributed systems and cloud infrastructure.
+          I am a Site Reliability Engineer and Software Engineer with over 8 years of experience designing, scaling, and operating mission-critical distributed systems and enterprise infrastructure.
         </p>
         <p class="para">
-          Currently at Cisco, I focus on network orchestration, automated health checks, and high-availability infrastructure for SD-WAN. My background spans data engineering at Apple Inc. via Wipro, full-stack microservices architecture at Elait IT, and deep hands-on expertise in Python, cloud systems, and telemetry.
+          Currently at Cisco IT, I manage enterprise network platforms including Catalyst Center (DNA-C), Cisco NSO, Firewall Management Center (FMC), Splunk Observability Cloud, Infoblox, Meraki, and ThousandEyes. I lead Customer Zero initiatives, platform security and RBAC governance, drive controller upgrade lifecycles, and spearhead AI platform enablement. Previously, I engineered high-availability SD-WAN infrastructure at Cisco, built enterprise data pipelines at Apple Inc. (via Wipro), and led full-stack engineering at Elait IT.
         </p>
 
         <!-- Personal Sign-off -->
@@ -263,6 +302,33 @@ const skillCategories = [
           — Alan Turing
         </footer>
       </blockquote>
+    </section>
+
+    <!-- Technical Competencies -->
+    <section class="space-y-4">
+      <h2 class="subtitle">Technical Competencies</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+        {
+          skillCategories.map((group) => (
+            <div class="glass-card p-4 space-y-2">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+                {group.category}
+              </h3>
+              <div class="flex flex-wrap gap-1.5">
+                {group.skills.map((skill) => (
+                  <Chips label={skill} variant="default" />
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Professional Experience Timeline -->
+    <section class="space-y-4">
+      <h2 class="subtitle">Professional Experience</h2>
+      <Timeline works={works} />
     </section>
 
     <!-- Certifications Section -->
@@ -293,33 +359,6 @@ const skillCategories = [
           ))
         }
       </div>
-    </section>
-
-    <!-- Technical Competencies -->
-    <section class="space-y-4">
-      <h2 class="subtitle">Technical Competencies</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-        {
-          skillCategories.map((group) => (
-            <div class="glass-card p-4 space-y-2">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">
-                {group.category}
-              </h3>
-              <div class="flex flex-wrap gap-1.5">
-                {group.skills.map((skill) => (
-                  <Chips label={skill} variant="default" />
-                ))}
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </section>
-
-    <!-- Professional Experience Timeline -->
-    <section class="space-y-4">
-      <h2 class="subtitle">Professional Experience</h2>
-      <Timeline works={works} />
     </section>
 
     <!-- Education -->
