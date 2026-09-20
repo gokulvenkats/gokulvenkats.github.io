@@ -1,85 +1,89 @@
-@import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@layer base {
+  body {
+    background: linear-gradient(-65deg,
+        #ee7752,
+        #e73c7e,
+        #23a6d5,
+        #23d5ab,
+        #22c1c3,
+        #eeaeca,
+        #94bbe9,
+        #fdbb2d
+      );
+    background-size: 800% 200%;
+    animation: gradient 18s ease infinite;
+    min-height: 100vh;
+    color: #1e293b;
+    transition: background 0.5s ease;
+  }
 
-.light-gradient {
-  background: linear-gradient(60deg,
-    #EE7752,
-    #E73C7E,
-    #23A6D5,
-    #79CBCA,
-    #E684AE,
-    #77A1D3,
-    #FDBB2D
-  );
-  background-size: 400% 400%;
-  -webkit-animation: gradient-dance 30s ease infinite;
-  -moz-animation: gradient-dance 30s ease infinite;
-  animation: gradient-dance 30s ease infinite;
+  html.dark body {
+    background: linear-gradient(-65deg,
+        #0b0f19,
+        #1e1b4b,
+        #0c4a6e,
+        #064e3b,
+        #111827,
+        #311042,
+        #0f172a
+      );
+    background-size: 600% 600%;
+    animation: gradient 22s ease infinite;
+    color: #f1f5f9;
+  }
+
+  ::selection {
+    background-color: #0284c7;
+    color: #ffffff;
+  }
 }
 
-.dark-gradient {
-  background: linear-gradient(60deg,
-    #1E130C,
-    #232526,
-    #414345,
-    #434343,
-    #3A6073,
-    #9A8478
-  );
-  background-size: 400% 400%;
-  -webkit-animation: gradient-dance 30s ease infinite;
-  -moz-animation: gradient-dance 30s ease infinite;
-  animation: gradient-dance 30s ease infinite;
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-@-webkit-keyframes gradient-dance {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-@-moz-keyframes gradient-dance {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-@keyframes gradient-dance {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+/* Glassmorphism panel system */
+.glass-container {
+  @apply bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-2xl shadow-slate-950/10 rounded-2xl sm:rounded-3xl transition-all duration-300;
 }
 
-.gradient-text {
-  @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 inline-block text-transparent bg-clip-text;
+.glass-card {
+  @apply bg-white/60 dark:bg-slate-800/60 backdrop-blur-md border border-white/50 dark:border-white/10 shadow-md hover:shadow-xl hover:border-sky-400/50 dark:hover:border-sky-400/50 rounded-xl transition-all duration-200;
 }
 
-.theme-toggle {
-  @apply text-gray-700 dark:text-slate-100  selection:bg-gray-700 selection:text-slate-100;
+.glass-nav {
+  @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-white/40 dark:border-white/10;
 }
 
-.wave-line {
-  @apply underline decoration-gray-700 decoration-wavy dark:decoration-slate-50;
-}
-
+/* Typographic Accents */
 .name {
-  @apply text-2xl font-black leading-normal text-center tracking-normal;
+  @apply text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white;
 }
 
 .title {
-  @apply text-center text-2xl font-bold wave-line;
+  @apply text-center text-3xl sm:text-4xl font-extrabold underline decoration-sky-500 decoration-wavy underline-offset-8 text-slate-900 dark:text-white transition-colors;
 }
 
 .subtitle {
-  @apply text-xl font-bold wave-line;
+  @apply text-xl sm:text-2xl font-bold underline decoration-sky-500 decoration-wavy underline-offset-8 text-slate-900 dark:text-white transition-colors;
 }
 
 .para {
-  @apply text-sm sm:text-base font-normal text-justify tracking-normal leading-relaxed;
+  @apply text-base text-slate-700 dark:text-slate-300 leading-relaxed font-normal;
 }
 
-.para-center {
-  @apply text-sm sm:text-base font-normal text-center tracking-normal leading-relaxed;
-}
-
-.lead {
-  @apply text-sm sm:text-sm font-semibold tracking-tight leading-tight;
+.para-left {
+  @apply text-base text-slate-700 dark:text-slate-300 leading-relaxed font-normal;
 }

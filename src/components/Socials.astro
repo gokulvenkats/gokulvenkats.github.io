@@ -1,62 +1,62 @@
 ---
-import LinkedIn from "@images/linkedin.svg?raw";
-import Github from "@images/github.svg?raw";
-import Twitter from "@images/twitter.svg?raw";
-import Youtube from "@images/youtube.svg?raw";
-import Facebook from "@images/facebook.svg?raw";
-import Instagram from "@images/instagram.svg?raw";
+import LinkedIn from "../../public/icons/linkedin.svg?raw";
+import Github from "../../public/icons/github.svg?raw";
+import X from "../../public/icons/x.svg?raw";
+import Youtube from "../../public/icons/youtube.svg?raw";
+
 const username = "gokulvenkats";
+
 const socialMedia = [
   {
-    name: "Linked In",
-    url: `https://linkedin.com/in/${username}`,
-    icon: LinkedIn,
-    show: true,
-  },
-  {
-    name: "Github",
+    name: "GitHub",
     url: `https://github.com/${username}`,
     icon: Github,
-    show: true,
   },
   {
-    name: "X-Twitter",
+    name: "LinkedIn",
+    url: `https://linkedin.com/in/${username}`,
+    icon: LinkedIn,
+  },
+  {
+    name: "X (Twitter)",
     url: `https://x.com/${username}`,
-    icon: Twitter,
-    show: true,
+    icon: X,
   },
   {
-    name: "Youtube",
+    name: "YouTube",
     url: `https://www.youtube.com/@${username}`,
     icon: Youtube,
-    show: true,
-  },
-  {
-    name: "Facebook",
-    url: "",
-    icon: Facebook,
-    show: false,
-  },
-  {
-    name: "Instagram",
-    url: "",
-    icon: Instagram,
-    show: false,
   },
 ];
 ---
 
-<div class="flex justify-center items-center gap-6 my-6">
+<div class="flex flex-wrap justify-center items-center gap-3 my-4">
   {
     socialMedia.map((link) => (
       <a
         href={link.url}
         target="_blank"
-        class={link.show ? "" : "hidden"}
+        rel="noreferrer noopener"
+        class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-900/5 dark:bg-white/5 border border-slate-900/10 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 hover:border-sky-300 dark:hover:border-sky-500/40 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
         aria-label={link.name}
+        title={link.name}
       >
-        <Fragment set:html={link.icon} />
+        <span class="w-5 h-5 flex items-center justify-center [&>svg]:w-5 [&>svg]:h-5 [&>svg]:fill-current">
+          <Fragment set:html={link.icon} />
+        </span>
       </a>
     ))
   }
+
+  <!-- Email Link -->
+  <a
+    href="mailto:gokul.venkatesan.gv@gmail.com"
+    class="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-900/5 dark:bg-white/5 border border-slate-900/10 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 hover:border-sky-300 dark:hover:border-sky-500/40 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200"
+    aria-label="Email Gokul"
+    title="Email me"
+  >
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>
+  </a>
 </div>
