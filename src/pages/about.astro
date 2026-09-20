@@ -2,6 +2,7 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import Timeline from "../components/Timeline.astro";
 import Chips from "../components/Chips.astro";
+import Signature from "../components/Signature.astro";
 
 const works = {
   companies: [
@@ -145,6 +146,16 @@ const skillCategories = [
           emphasizes robust automation, observability, clean system design, and
           continuous operational resilience.
         </p>
+
+        <!-- Personal Signature Sign-off -->
+        <div class="flex items-center gap-3 pt-1">
+          <Signature class="w-16 h-16 sm:w-20 sm:h-20" />
+          <div class="text-xs font-mono text-slate-500 dark:text-slate-400">
+            <span class="font-bold text-slate-800 dark:text-slate-200">Gokul Venkatesan</span>
+            <br />
+            <span>Site Reliability & Software Engineer</span>
+          </div>
+        </div>
       </div>
 
       <!-- Professional philosophy quote -->

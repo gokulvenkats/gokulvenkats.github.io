@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Socials from "../components/Socials.astro";
 import Chips from "../components/Chips.astro";
+import Signature from "../components/Signature.astro";
 
 const pageTitle = "Gokul Venkatesan — Software Engineer & SRE";
 const pageDescription = "Senior Software Engineer and SRE at Cisco specializing in distributed systems, cloud infrastructure, network orchestration, and reliability engineering.";
@@ -67,6 +68,11 @@ const highlights = [
         <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
           Site Reliability & Software Engineer with 8+ years of experience in distributed systems, network automation, and cloud infrastructure. Passionate about building resilient, high-performance systems.
         </p>
+
+        <!-- Animated Signature Mark -->
+        <div class="flex justify-center pt-1">
+          <Signature class="w-20 h-20 sm:w-24 sm:h-24" subtitle="Gokul" />
+        </div>
       </div>
 
       <!-- Quick Action Buttons -->
