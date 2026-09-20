@@ -2,6 +2,18 @@
 ---
 
 <div id="intro-splash" class="intro-splash-overlay" aria-hidden="true">
+  <!-- Sound Toggle Button in top-left -->
+  <button id="intro-audio-btn" class="audio-btn" aria-label="Toggle intro sound">
+    <svg id="audio-icon-on" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+    </svg>
+    <svg id="audio-icon-muted" class="w-3.5 h-3.5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+    </svg>
+    <span id="audio-btn-label">Sound On</span>
+  </button>
+
   <!-- Ambient backdrop -->
   <div class="intro-glow"></div>
 
@@ -16,13 +28,13 @@
       >
         <defs>
           <radialGradient id="burst-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8" />
-            <stop offset="60%" stop-color="#818cf8" stop-opacity="0.4" />
+            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9" />
+            <stop offset="50%" stop-color="#818cf8" stop-opacity="0.5" />
             <stop offset="100%" stop-color="#c084fc" stop-opacity="0" />
           </radialGradient>
         </defs>
 
-        <!-- Pop Burst Ring (centered at the ! origin 572, 442) -->
+        <!-- Pop Burst Ring (Primary electric cyan) -->
         <circle
           class="pop-ring"
           cx="572"
@@ -30,8 +42,29 @@
           r="8"
           fill="none"
           stroke="#38bdf8"
-          stroke-width="5"
+          stroke-width="6"
         />
+
+        <!-- Pop Secondary Outer Ring (Indigo/violet echo) -->
+        <circle
+          class="pop-ring-outer"
+          cx="572"
+          cy="442"
+          r="8"
+          fill="none"
+          stroke="#818cf8"
+          stroke-width="3"
+        />
+
+        <!-- Pop Radial Sparks -->
+        <g class="pop-sparks">
+          <circle class="pop-spark spark-1" cx="572" cy="442" r="3.5" fill="#38bdf8" />
+          <circle class="pop-spark spark-2" cx="572" cy="442" r="2.8" fill="#818cf8" />
+          <circle class="pop-spark spark-3" cx="572" cy="442" r="3.5" fill="#38bdf8" />
+          <circle class="pop-spark spark-4" cx="572" cy="442" r="2.8" fill="#c084fc" />
+          <circle class="pop-spark spark-5" cx="572" cy="442" r="3.5" fill="#38bdf8" />
+          <circle class="pop-spark spark-6" cx="572" cy="442" r="2.8" fill="#818cf8" />
+        </g>
 
         <!-- Pop Ambient Flash Behind the ! -->
         <circle
@@ -303,12 +336,12 @@ z"
         Gokul Venkatesan
       </h2>
       <p class="text-xs font-mono text-sky-600 dark:text-sky-400 tracking-wider">
-        Site Reliability & Software Engineer
+        Software Engineer • AI Engineering & Operations
       </p>
     </div>
   </div>
 
-  <!-- Skip Button with circular countdown indicator -->
+  <!-- Skip Button -->
   <button id="skip-splash-btn" class="skip-btn" aria-label="Skip intro animation">
     <span>Skip</span>
     <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -334,7 +367,7 @@ z"
     -webkit-backdrop-filter: blur(28px);
     user-select: none;
     cursor: pointer;
-    animation: splashFadeOut 0.45s cubic-bezier(0.4, 0, 0.2, 1) 2.65s forwards;
+    animation: splashFadeOut 0.5s cubic-bezier(0.4, 0, 0.2, 1) 4.5s forwards;
   }
 
   :global(.dark) .intro-splash-overlay {
@@ -343,17 +376,17 @@ z"
 
   .intro-glow {
     position: absolute;
-    width: 380px;
-    height: 380px;
+    width: 420px;
+    height: 420px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(129, 140, 248, 0.15) 50%, rgba(244, 114, 182, 0) 70%);
-    filter: blur(40px);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(129, 140, 248, 0.18) 50%, rgba(244, 114, 182, 0) 70%);
+    filter: blur(45px);
     pointer-events: none;
-    animation: pulseGlow 2.5s ease-in-out infinite alternate;
+    animation: pulseGlow 3.5s ease-in-out infinite alternate;
   }
 
   :global(.dark) .intro-glow {
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, rgba(99, 102, 241, 0.2) 50%, rgba(244, 114, 182, 0) 70%);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.35) 0%, rgba(99, 102, 241, 0.22) 50%, rgba(244, 114, 182, 0) 70%);
   }
 
   @keyframes pulseGlow {
@@ -362,7 +395,7 @@ z"
       opacity: 0.6;
     }
     100% {
-      transform: scale(1.15);
+      transform: scale(1.18);
       opacity: 1;
     }
   }
@@ -377,11 +410,11 @@ z"
     z-index: 10;
   }
 
-  /* 1. Letter 'G' handwriting animation */
+  /* 1. Letter 'G' handwriting animation (0.15s - 2.05s) */
   .splash-g {
     stroke-dasharray: 5500;
     stroke-dashoffset: 5500;
-    animation: drawG 1.25s cubic-bezier(0.55, 0, 0.2, 1) 0.15s forwards;
+    animation: drawG 1.9s cubic-bezier(0.45, 0, 0.15, 1) 0.15s forwards;
   }
 
   @keyframes drawG {
@@ -389,28 +422,31 @@ z"
       stroke-dashoffset: 5500;
       fill-opacity: 0;
       opacity: 0;
+      filter: drop-shadow(0 0 0px transparent);
     }
-    12% {
+    10% {
       opacity: 1;
     }
-    75% {
+    72% {
       stroke-dashoffset: 0;
-      fill-opacity: 0.15;
+      fill-opacity: 0.2;
+      filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3));
     }
     100% {
       stroke-dashoffset: 0;
       fill-opacity: 1;
       opacity: 1;
+      filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.45));
     }
   }
 
-  /* 2. Exclamation mark '!' energetic POP */
+  /* 2. Exclamation mark '!' energetic POP (starts at 2.1s) */
   .splash-exclamation {
     transform-origin: 572px 442px;
     transform-box: fill-box;
     opacity: 0;
     transform: scale(0);
-    animation: popExclamation 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1.35s forwards;
+    animation: popExclamation 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 2.1s forwards;
   }
 
   .splash-excl-stem,
@@ -429,17 +465,17 @@ z"
   @keyframes popExclamation {
     0% {
       opacity: 0;
-      transform: scale(0) rotate(-20deg);
+      transform: scale(0) rotate(-24deg);
       filter: drop-shadow(0 0 0px transparent);
     }
     45% {
       opacity: 1;
-      transform: scale(1.36) rotate(6deg);
-      filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.9));
+      transform: scale(1.45) rotate(8deg);
+      filter: drop-shadow(0 0 24px rgba(56, 189, 248, 1)) drop-shadow(0 0 45px rgba(129, 140, 248, 0.8));
     }
     70% {
-      transform: scale(0.92) rotate(-2deg);
-      filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6));
+      transform: scale(0.90) rotate(-3deg);
+      filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.7));
     }
     88% {
       transform: scale(1.06) rotate(1deg);
@@ -447,39 +483,83 @@ z"
     100% {
       opacity: 1;
       transform: scale(1) rotate(0deg);
-      filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.4));
+      filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
     }
   }
 
-  /* 3. Pop burst ring effect */
+  /* 3. Primary Pop burst ring (2.1s) */
   .pop-ring {
     opacity: 0;
     transform-origin: 572px 442px;
-    animation: ringBurst 0.65s cubic-bezier(0.1, 0.8, 0.3, 1) 1.35s forwards;
+    animation: ringBurst 0.85s cubic-bezier(0.1, 0.8, 0.3, 1) 2.1s forwards;
   }
 
   @keyframes ringBurst {
     0% {
-      r: 8;
+      r: 10;
       opacity: 0;
-      stroke-width: 8;
+      stroke-width: 9;
     }
-    25% {
+    20% {
       opacity: 1;
-      stroke-width: 5;
+      stroke-width: 6;
     }
     100% {
-      r: 170;
+      r: 220;
       opacity: 0;
       stroke-width: 0;
     }
   }
 
-  /* 4. Pop ambient light flash */
+  /* 3b. Secondary Pop burst ring (2.2s) */
+  .pop-ring-outer {
+    opacity: 0;
+    transform-origin: 572px 442px;
+    animation: ringBurstOuter 0.95s cubic-bezier(0.1, 0.8, 0.3, 1) 2.2s forwards;
+  }
+
+  @keyframes ringBurstOuter {
+    0% {
+      r: 10;
+      opacity: 0;
+      stroke-width: 5;
+    }
+    25% {
+      opacity: 0.85;
+      stroke-width: 3;
+    }
+    100% {
+      r: 270;
+      opacity: 0;
+      stroke-width: 0;
+    }
+  }
+
+  /* 3c. Pop radial spark particles (2.1s) */
+  .pop-spark {
+    opacity: 0;
+    transform-origin: 572px 442px;
+  }
+
+  .spark-1 { animation: sparkFly1 0.75s cubic-bezier(0.1, 0.8, 0.3, 1) 2.1s forwards; }
+  .spark-2 { animation: sparkFly2 0.75s cubic-bezier(0.1, 0.8, 0.3, 1) 2.1s forwards; }
+  .spark-3 { animation: sparkFly3 0.75s cubic-bezier(0.1, 0.8, 0.3, 1) 2.1s forwards; }
+  .spark-4 { animation: sparkFly4 0.75s cubic-bezier(0.1, 0.8, 0.3, 1) 2.1s forwards; }
+  .spark-5 { animation: sparkFly5 0.75s cubic-bezier(0.1, 0.8, 0.3, 1) 2.1s forwards; }
+  .spark-6 { animation: sparkFly6 0.75s cubic-bezier(0.1, 0.8, 0.3, 1) 2.1s forwards; }
+
+  @keyframes sparkFly1 { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(0px, -70px) scale(0); opacity: 0; } }
+  @keyframes sparkFly2 { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(60px, -35px) scale(0); opacity: 0; } }
+  @keyframes sparkFly3 { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(60px, 35px) scale(0); opacity: 0; } }
+  @keyframes sparkFly4 { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(0px, 70px) scale(0); opacity: 0; } }
+  @keyframes sparkFly5 { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(-60px, 35px) scale(0); opacity: 0; } }
+  @keyframes sparkFly6 { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(-60px, -35px) scale(0); opacity: 0; } }
+
+  /* 4. Pop ambient light flash (2.1s) */
   .pop-flash {
     opacity: 0;
     transform-origin: 572px 442px;
-    animation: flashFade 0.7s ease-out 1.35s forwards;
+    animation: flashFade 0.9s ease-out 2.1s forwards;
   }
 
   @keyframes flashFade {
@@ -487,35 +567,35 @@ z"
       opacity: 0;
       transform: scale(0.2);
     }
-    30% {
-      opacity: 0.85;
-      transform: scale(1.3);
+    25% {
+      opacity: 0.95;
+      transform: scale(1.4);
     }
     100% {
       opacity: 0;
-      transform: scale(1.6);
+      transform: scale(1.8);
     }
   }
 
-  /* 5. Subtitle reveal */
+  /* 5. Subtitle reveal (2.85s) */
   .intro-caption {
     opacity: 0;
-    transform: translateY(8px);
-    animation: captionSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.85s forwards;
+    transform: translateY(12px);
+    animation: captionSlide 0.65s cubic-bezier(0.16, 1, 0.3, 1) 2.85s forwards;
   }
 
   @keyframes captionSlide {
     0% {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(12px) scale(0.96);
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
   }
 
-  /* 6. Whole splash auto fade out */
+  /* 6. Whole splash auto fade out (4.5s - 5.0s) */
   @keyframes splashFadeOut {
     0% {
       opacity: 1;
@@ -531,11 +611,11 @@ z"
     }
   }
 
-  /* Skip button */
+  /* Top Buttons: Audio Toggle & Skip */
+  .audio-btn,
   .skip-btn {
     position: absolute;
     top: 1.5rem;
-    right: 1.5rem;
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
@@ -553,12 +633,22 @@ z"
     z-index: 20;
   }
 
+  .audio-btn {
+    left: 1.5rem;
+  }
+
+  .skip-btn {
+    right: 1.5rem;
+  }
+
+  :global(.dark) .audio-btn,
   :global(.dark) .skip-btn {
     background: rgba(255, 255, 255, 0.08);
     color: rgb(203, 213, 225);
     border: 1px solid rgba(255, 255, 255, 0.12);
   }
 
+  .audio-btn:hover,
   .skip-btn:hover {
     background: rgba(14, 165, 233, 0.15);
     color: rgb(14, 165, 233);
@@ -596,25 +686,195 @@ z"
     if (!splash) return;
 
     let isDismissed = false;
+    let isMuted = false;
+    let audioContext = null;
+    let masterGain = null;
+
+    // Netflix-style Signature Sound Synthesizer via Web Audio API
+    const playCinematicSound = () => {
+      if (isMuted || audioContext) return;
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+
+        audioContext = new AudioCtx();
+        masterGain = audioContext.createGain();
+        masterGain.gain.setValueAtTime(0.65, audioContext.currentTime);
+        masterGain.connect(audioContext.destination);
+
+        const now = audioContext.currentTime;
+
+        // === HIT 1: "TA" (T = 0.0s) ===
+        // Deep sub-bass drop (95Hz -> 38Hz)
+        const sub1 = audioContext.createOscillator();
+        const subGain1 = audioContext.createGain();
+        sub1.type = "sine";
+        sub1.frequency.setValueAtTime(95, now);
+        sub1.frequency.exponentialRampToValueAtTime(38, now + 0.35);
+        subGain1.gain.setValueAtTime(0.85, now);
+        subGain1.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+        sub1.connect(subGain1);
+        subGain1.connect(masterGain);
+        sub1.start(now);
+        sub1.stop(now + 0.55);
+
+        // Low body cello tone (D2 ~ 73.4Hz)
+        const body1 = audioContext.createOscillator();
+        const bodyGain1 = audioContext.createGain();
+        body1.type = "triangle";
+        body1.frequency.setValueAtTime(73.42, now);
+        bodyGain1.gain.setValueAtTime(0.28, now);
+        bodyGain1.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+        body1.connect(bodyGain1);
+        bodyGain1.connect(masterGain);
+        body1.start(now);
+        body1.stop(now + 1.25);
+
+        // Rising harmonic swell during cursive G stroke (0.2s - 2.0s)
+        const swell = audioContext.createOscillator();
+        const swellGain = audioContext.createGain();
+        swell.type = "sine";
+        swell.frequency.setValueAtTime(110, now + 0.2);
+        swell.frequency.exponentialRampToValueAtTime(220, now + 2.0);
+        swellGain.gain.setValueAtTime(0.001, now + 0.2);
+        swellGain.gain.linearRampToValueAtTime(0.09, now + 1.8);
+        swellGain.gain.exponentialRampToValueAtTime(0.001, now + 2.1);
+        swell.connect(swellGain);
+        swellGain.connect(masterGain);
+        swell.start(now + 0.2);
+        swell.stop(now + 2.15);
+
+        // === HIT 2: "DUM" (T = 2.1s - exclamation mark pop!) ===
+        const t2 = now + 2.1;
+
+        // Heavy cinematic sub-bass slam (130Hz -> 30Hz)
+        const sub2 = audioContext.createOscillator();
+        const subGain2 = audioContext.createGain();
+        sub2.type = "sine";
+        sub2.frequency.setValueAtTime(130, t2);
+        sub2.frequency.exponentialRampToValueAtTime(30, t2 + 0.75);
+        subGain2.gain.setValueAtTime(1.0, t2);
+        subGain2.gain.exponentialRampToValueAtTime(0.001, t2 + 1.5);
+        sub2.connect(subGain2);
+        subGain2.connect(masterGain);
+        sub2.start(t2);
+        sub2.stop(t2 + 1.55);
+
+        // Cinematic resonant chord (D2, A2, D3, F#3, A3)
+        const chordFrequencies = [73.42, 110.0, 146.83, 185.0, 220.0];
+        chordFrequencies.forEach((freq, idx) => {
+          const osc = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          osc.type = idx % 2 === 0 ? "sawtooth" : "triangle";
+          osc.frequency.setValueAtTime(freq, t2);
+
+          const filter = audioContext.createBiquadFilter();
+          filter.type = "lowpass";
+          filter.frequency.setValueAtTime(380, t2);
+          filter.frequency.exponentialRampToValueAtTime(140, t2 + 2.4);
+
+          gain.gain.setValueAtTime(0.2 / chordFrequencies.length, t2);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t2 + 2.6);
+
+          osc.connect(filter);
+          filter.connect(gain);
+          gain.connect(masterGain);
+
+          osc.start(t2);
+          osc.stop(t2 + 2.7);
+        });
+
+        // High crystalline glass shimmer on '!' pop burst
+        const shimmer = audioContext.createOscillator();
+        const shimmerGain = audioContext.createGain();
+        const shimmerFilter = audioContext.createBiquadFilter();
+        shimmer.type = "sine";
+        shimmer.frequency.setValueAtTime(1760, t2);
+        shimmer.frequency.exponentialRampToValueAtTime(2637, t2 + 0.18);
+        shimmerFilter.type = "bandpass";
+        shimmerFilter.frequency.setValueAtTime(2400, t2);
+        shimmerFilter.Q.setValueAtTime(3.5, t2);
+        shimmerGain.gain.setValueAtTime(0.22, t2);
+        shimmerGain.gain.exponentialRampToValueAtTime(0.0001, t2 + 1.2);
+        shimmer.connect(shimmerFilter);
+        shimmerFilter.connect(shimmerGain);
+        shimmerGain.connect(masterGain);
+        shimmer.start(t2);
+        shimmer.stop(t2 + 1.3);
+
+        // Auto unlock if suspended by browser autoplay policy
+        if (audioContext.state === "suspended") {
+          const unlock = () => {
+            if (audioContext && audioContext.state === "suspended") {
+              audioContext.resume();
+            }
+            window.removeEventListener("pointerdown", unlock);
+            window.removeEventListener("keydown", unlock);
+          };
+          window.addEventListener("pointerdown", unlock, { once: true });
+          window.addEventListener("keydown", unlock, { once: true });
+        }
+      } catch (e) {
+        console.warn("Web Audio synthesis:", e);
+      }
+    };
+
+    // Attempt to play cinematic intro sound immediately
+    playCinematicSound();
+
+    // Sound toggle button in top-left
+    const audioBtn = document.getElementById("intro-audio-btn");
+    const iconOn = document.getElementById("audio-icon-on");
+    const iconMuted = document.getElementById("audio-icon-muted");
+    const labelAudio = document.getElementById("audio-btn-label");
+
+    if (audioBtn) {
+      audioBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // prevent dismissing the splash
+        if (!audioContext) {
+          playCinematicSound();
+          if (audioContext && audioContext.state === "suspended") {
+            audioContext.resume();
+          }
+          return;
+        }
+        isMuted = !isMuted;
+        if (masterGain) {
+          masterGain.gain.setValueAtTime(isMuted ? 0 : 0.65, audioContext.currentTime);
+        }
+        if (iconOn && iconMuted && labelAudio) {
+          iconOn.classList.toggle("hidden", isMuted);
+          iconMuted.classList.toggle("hidden", !isMuted);
+          labelAudio.textContent = isMuted ? "Muted" : "Sound On";
+        }
+      });
+    }
 
     const dismissSplash = () => {
       if (isDismissed) return;
       isDismissed = true;
 
-      splash.style.transition = "opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+      if (masterGain && audioContext) {
+        masterGain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.35);
+      }
+
+      splash.style.transition = "opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)";
       splash.style.opacity = "0";
       splash.style.transform = "scale(1.04)";
       splash.style.pointerEvents = "none";
 
       setTimeout(() => {
+        if (audioContext && audioContext.state !== "closed") {
+          audioContext.close().catch(() => {});
+        }
         if (splash.parentNode) {
           splash.parentNode.removeChild(splash);
         }
-      }, 420);
+      }, 460);
     };
 
-    // Auto dismiss precisely at 3.0 seconds
-    const timer = setTimeout(dismissSplash, 3000);
+    // Auto dismiss precisely at 5.0 seconds
+    const timer = setTimeout(dismissSplash, 5000);
 
     // Skip button
     const skipBtn = document.getElementById("skip-splash-btn");
@@ -626,7 +886,7 @@ z"
       });
     }
 
-    // Clicking anywhere on the intro overlay dismisses it instantly
+    // Clicking anywhere on the intro overlay dismisses it instantly (unless clicking audio button)
     splash.addEventListener("click", () => {
       clearTimeout(timer);
       dismissSplash();
