@@ -2,7 +2,6 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import Timeline from "../components/Timeline.astro";
 import Chips from "../components/Chips.astro";
-import Signature from "../components/Signature.astro";
 
 const works = {
   companies: [
@@ -245,14 +244,10 @@ const skillCategories = [
           Currently at Cisco, I focus on network orchestration, automated health checks, and high-availability infrastructure for SD-WAN. My background spans data engineering at Apple Inc. via Wipro, full-stack microservices architecture at Elait IT, and deep hands-on expertise in Python, cloud systems, and telemetry.
         </p>
 
-        <!-- Personal Signature Sign-off -->
-        <div class="flex items-center gap-3 pt-2">
-          <Signature class="w-16 h-16 sm:w-20 sm:h-20" />
-          <div class="text-xs font-mono text-slate-500 dark:text-slate-400">
-            <span class="font-bold text-slate-800 dark:text-slate-200">Gokul Venkatesan</span>
-            <br />
-            <span>Bengaluru & Chennai, India</span>
-          </div>
+        <!-- Personal Sign-off -->
+        <div class="pt-2 font-mono text-xs text-slate-600 dark:text-slate-400">
+          <span class="font-bold text-slate-800 dark:text-slate-200">— Gokul Venkatesan</span>
+          <span class="text-slate-400 dark:text-slate-500"> • Bengaluru & Chennai, India</span>
         </div>
       </div>
 

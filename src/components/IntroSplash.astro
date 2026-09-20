@@ -1,28 +1,56 @@
 ---
-interface Props {
-  class?: string;
-  subtitle?: string;
-}
-
-const { class: className = "w-24 h-24 sm:w-28 sm:h-28", subtitle } = Astro.props;
 ---
 
-<div class="flex flex-col items-center justify-center group select-none">
-  <div class:list={["signature-container relative transition-transform duration-300 group-hover:scale-105", className]}>
-    <svg
-      viewBox="0 0 1024 1024"
-      class="w-full h-full text-slate-800 dark:text-sky-400 drop-shadow-sm"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-label="Gokul signature"
-    >
-      <path
-        class="sign-path sign-path-1"
-        fill="currentColor"
-        stroke="currentColor"
-        stroke-width="4"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="
+<div id="intro-splash" class="intro-splash-overlay" aria-hidden="true">
+  <!-- Ambient backdrop -->
+  <div class="intro-glow"></div>
+
+  <div class="intro-center-card">
+    <!-- Signature Artwork Container -->
+    <div class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72">
+      <svg
+        viewBox="0 0 1024 1024"
+        class="w-full h-full text-slate-900 dark:text-sky-400 drop-shadow-xl"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Gokul signature intro"
+      >
+        <defs>
+          <radialGradient id="burst-glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8" />
+            <stop offset="60%" stop-color="#818cf8" stop-opacity="0.4" />
+            <stop offset="100%" stop-color="#c084fc" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <!-- Pop Burst Ring (centered at the ! origin 572, 442) -->
+        <circle
+          class="pop-ring"
+          cx="572"
+          cy="442"
+          r="8"
+          fill="none"
+          stroke="#38bdf8"
+          stroke-width="5"
+        />
+
+        <!-- Pop Ambient Flash Behind the ! -->
+        <circle
+          class="pop-flash"
+          cx="572"
+          cy="442"
+          r="90"
+          fill="url(#burst-glow)"
+        />
+
+        <!-- Letter 'G' (Path 1) -->
+        <path
+          class="splash-g"
+          fill="currentColor"
+          stroke="currentColor"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="
 M393.060181,634.114990 
 	C385.735504,637.384949 384.698364,642.912598 384.813751,650.090942 
 	C385.319916,681.584290 384.747681,713.098389 385.479950,744.583679 
@@ -213,17 +241,19 @@ M387.313629,442.838074
 	C370.254272,414.725006 374.081207,437.211426 376.919983,460.813324 
 	C382.753113,455.373413 383.258789,448.538757 387.313629,442.838074 
 z"
-      />
-      <!-- Exclamation Mark '!' (Paths 2 & 3) -->
-      <g class="exclamation-group">
-        <path
-          class="sign-path sign-path-2"
-          fill="currentColor"
-          stroke="currentColor"
-          stroke-width="4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="
+        />
+
+        <!-- Exclamation Mark '!' (Path 2 + Path 3) -->
+        <g class="splash-exclamation">
+          <!-- Stem of ! -->
+          <path
+            class="splash-excl-stem"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="
 M527.286499,308.552368 
 	C525.645386,301.191742 522.993225,294.462921 522.495239,287.281830 
 	C522.256714,283.842682 521.630066,279.904449 526.162109,278.556396 
@@ -245,15 +275,16 @@ M527.286499,308.552368
 	C536.584717,346.782257 533.224304,331.907990 529.675110,317.092926 
 	C529.018616,314.352509 528.179504,311.655884 527.286499,308.552368 
 z"
-        />
-        <path
-          class="sign-path sign-path-3"
-          fill="currentColor"
-          stroke="currentColor"
-          stroke-width="4"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="
+          />
+          <!-- Dot of ! -->
+          <path
+            class="splash-excl-dot"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="
 M607.018921,605.245972 
 	C598.854553,606.817749 590.435181,601.835571 587.769592,594.204651 
 	C585.026611,586.352051 588.456665,578.054565 596.104980,574.041138 
@@ -261,30 +292,93 @@ M607.018921,605.245972
 	C622.146790,585.872131 621.473999,594.017761 615.308350,600.299805 
 	C613.030029,602.621216 610.588074,604.421875 607.018921,605.245972 
 z"
-        />
-      </g>
-    </svg>
+          />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Title & Role Subtitle -->
+    <div class="intro-caption space-y-1">
+      <h2 class="text-sm sm:text-base font-bold tracking-widest uppercase text-slate-900 dark:text-white font-mono">
+        Gokul Venkatesan
+      </h2>
+      <p class="text-xs font-mono text-sky-600 dark:text-sky-400 tracking-wider">
+        Site Reliability & Software Engineer
+      </p>
+    </div>
   </div>
-  {subtitle && <span class="text-[11px] font-mono text-slate-400 dark:text-slate-500 mt-1 tracking-wider uppercase">{subtitle}</span>}
+
+  <!-- Skip Button with circular countdown indicator -->
+  <button id="skip-splash-btn" class="skip-btn" aria-label="Skip intro animation">
+    <span>Skip</span>
+    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7m0 0l-7 7m7-7H3" />
+    </svg>
+  </button>
 </div>
 
 <style>
-  .signature-container {
-    filter: drop-shadow(0 2px 8px rgba(14, 165, 233, 0.15));
+  .intro-splash-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(248, 250, 252, 0.97);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    user-select: none;
+    cursor: pointer;
+    animation: splashFadeOut 0.45s cubic-bezier(0.4, 0, 0.2, 1) 2.65s forwards;
   }
 
-  .sign-path-1 {
+  :global(.dark) .intro-splash-overlay {
+    background: rgba(10, 15, 29, 0.97);
+  }
+
+  .intro-glow {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(129, 140, 248, 0.15) 50%, rgba(244, 114, 182, 0) 70%);
+    filter: blur(40px);
+    pointer-events: none;
+    animation: pulseGlow 2.5s ease-in-out infinite alternate;
+  }
+
+  :global(.dark) .intro-glow {
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, rgba(99, 102, 241, 0.2) 50%, rgba(244, 114, 182, 0) 70%);
+  }
+
+  @keyframes pulseGlow {
+    0% {
+      transform: scale(0.85);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+  }
+
+  .intro-center-card {
+    position: relative;
+    display: flex;
+    flex-col;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 10;
+  }
+
+  /* 1. Letter 'G' handwriting animation */
+  .splash-g {
     stroke-dasharray: 5500;
     stroke-dashoffset: 5500;
-    animation: drawG 1.3s cubic-bezier(0.55, 0, 0.2, 1) 0.15s forwards;
-  }
-
-  .exclamation-group {
-    transform-origin: 572px 442px;
-    transform-box: fill-box;
-    opacity: 0;
-    transform: scale(0);
-    animation: popExclamation 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.25s forwards;
+    animation: drawG 1.25s cubic-bezier(0.55, 0, 0.2, 1) 0.15s forwards;
   }
 
   @keyframes drawG {
@@ -307,6 +401,28 @@ z"
     }
   }
 
+  /* 2. Exclamation mark '!' energetic POP */
+  .splash-exclamation {
+    transform-origin: 572px 442px;
+    transform-box: fill-box;
+    opacity: 0;
+    transform: scale(0);
+    animation: popExclamation 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 1.35s forwards;
+  }
+
+  .splash-excl-stem,
+  .splash-excl-dot {
+    color: #0284c7;
+    fill: currentColor;
+    stroke: currentColor;
+    transition: color 0.3s ease;
+  }
+
+  :global(.dark) .splash-excl-stem,
+  :global(.dark) .splash-excl-dot {
+    color: #38bdf8;
+  }
+
   @keyframes popExclamation {
     0% {
       opacity: 0;
@@ -316,28 +432,186 @@ z"
     45% {
       opacity: 1;
       transform: scale(1.36) rotate(6deg);
-      filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.8));
+      filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.9));
     }
     70% {
       transform: scale(0.92) rotate(-2deg);
+      filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6));
     }
     88% {
-      transform: scale(1.05) rotate(1deg);
+      transform: scale(1.06) rotate(1deg);
     }
     100% {
       opacity: 1;
       transform: scale(1) rotate(0deg);
-      filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.3));
+      filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.4));
     }
   }
 
-  /* Interactive replay on hover */
-  .signature-container:hover .sign-path-1 {
-    animation: none;
-    animation: drawG 1.2s cubic-bezier(0.55, 0, 0.2, 1) forwards;
+  /* 3. Pop burst ring effect */
+  .pop-ring {
+    opacity: 0;
+    transform-origin: 572px 442px;
+    animation: ringBurst 0.65s cubic-bezier(0.1, 0.8, 0.3, 1) 1.35s forwards;
   }
-  .signature-container:hover .exclamation-group {
-    animation: none;
-    animation: popExclamation 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards;
+
+  @keyframes ringBurst {
+    0% {
+      r: 8;
+      opacity: 0;
+      stroke-width: 8;
+    }
+    25% {
+      opacity: 1;
+      stroke-width: 5;
+    }
+    100% {
+      r: 170;
+      opacity: 0;
+      stroke-width: 0;
+    }
+  }
+
+  /* 4. Pop ambient light flash */
+  .pop-flash {
+    opacity: 0;
+    transform-origin: 572px 442px;
+    animation: flashFade 0.7s ease-out 1.35s forwards;
+  }
+
+  @keyframes flashFade {
+    0% {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+    30% {
+      opacity: 0.85;
+      transform: scale(1.3);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.6);
+    }
+  }
+
+  /* 5. Subtitle reveal */
+  .intro-caption {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: captionSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.85s forwards;
+  }
+
+  @keyframes captionSlide {
+    0% {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 6. Whole splash auto fade out */
+  @keyframes splashFadeOut {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+      backdrop-filter: blur(28px);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.05);
+      backdrop-filter: blur(0px);
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
+  /* Skip button */
+  .skip-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: inline-flex;
+    items-center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    background: rgba(15, 23, 42, 0.06);
+    color: rgb(71, 85, 105);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    z-index: 20;
+  }
+
+  :global(.dark) .skip-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgb(203, 213, 225);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .skip-btn:hover {
+    background: rgba(14, 165, 233, 0.15);
+    color: rgb(14, 165, 233);
+    border-color: rgba(14, 165, 233, 0.4);
+    transform: translateY(-1px);
   }
 </style>
+
+<script is:inline>
+  (() => {
+    const splash = document.getElementById("intro-splash");
+    if (!splash) return;
+
+    let isDismissed = false;
+
+    const dismissSplash = () => {
+      if (isDismissed) return;
+      isDismissed = true;
+
+      splash.style.transition = "opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)";
+      splash.style.opacity = "0";
+      splash.style.transform = "scale(1.04)";
+      splash.style.pointerEvents = "none";
+
+      setTimeout(() => {
+        if (splash.parentNode) {
+          splash.parentNode.removeChild(splash);
+        }
+      }, 420);
+    };
+
+    // Auto dismiss precisely at 3.0 seconds
+    const timer = setTimeout(dismissSplash, 3000);
+
+    // Skip button
+    const skipBtn = document.getElementById("skip-splash-btn");
+    if (skipBtn) {
+      skipBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        clearTimeout(timer);
+        dismissSplash();
+      });
+    }
+
+    // Clicking anywhere on the intro overlay dismisses it instantly
+    splash.addEventListener("click", () => {
+      clearTimeout(timer);
+      dismissSplash();
+    });
+
+    // Pressing ESC or Space also dismisses it
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" || e.key === " ") {
+        clearTimeout(timer);
+        dismissSplash();
+      }
+    });
+  })();
+</script>
