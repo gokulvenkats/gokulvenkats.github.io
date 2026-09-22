@@ -24,10 +24,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gokulven
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-white/apple-touch-icon.png" />
-    <link rel="manifest" href="/favicon-white/site.webmanifest" />
+    <!-- Dynamic Favicons (White in dark mode, Black in light mode) -->
+    <link id="favicon-ico" rel="icon" type="image/x-icon" href="/favicon-black/favicon.ico" />
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="/favicon-black/favicon-32x32.png" />
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="/favicon-black/favicon-16x16.png" />
+    <link id="favicon-svg" rel="icon" type="image/svg+xml" href="/favicon-black/favicon.svg" />
+    <link id="favicon-apple" rel="apple-touch-icon" sizes="180x180" href="/favicon-black/apple-touch-icon.png" />
+    <link id="favicon-manifest" rel="manifest" href="/favicon-black/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google Fonts: Fira Mono & Fira Code -->
@@ -56,8 +59,28 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gokulven
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, canonicalURL)} />
 
-    <!-- Anti-FOUC Dark Mode initialization script -->
+    <!-- Anti-FOUC Dark Mode & Favicon initialization script -->
     <script is:inline>
+      function updateFavicon(isDark) {
+        const folder = isDark ? "favicon-white" : "favicon-black";
+        const targets = [
+          { id: "favicon-ico", href: `/${folder}/favicon.ico` },
+          { id: "favicon-32", href: `/${folder}/favicon-32x32.png` },
+          { id: "favicon-16", href: `/${folder}/favicon-16x16.png` },
+          { id: "favicon-svg", href: `/${folder}/favicon.svg` },
+          { id: "favicon-apple", href: `/${folder}/apple-touch-icon.png` },
+          { id: "favicon-manifest", href: `/${folder}/site.webmanifest` },
+        ];
+
+        targets.forEach(({ id, href }) => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.href = href;
+          }
+        });
+      }
+      window.updateFavicon = updateFavicon;
+
       const getInitialTheme = () => {
         if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
           return localStorage.getItem("theme");
@@ -69,23 +92,42 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gokulven
       };
 
       const theme = getInitialTheme();
-      if (theme === "dark") {
+      const isDark = theme === "dark";
+      if (isDark) {
         document.documentElement.classList.add("dark");
       } else {
         document.documentElement.classList.remove("dark");
       }
       localStorage.setItem("theme", theme);
+      updateFavicon(isDark);
 
-      // Check if user has already seen the first-time intro splash
+      // System color scheme change listener
+      if (window.matchMedia) {
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+          if (!localStorage.getItem("theme")) {
+            const systemDark = e.matches;
+            if (systemDark) {
+              document.documentElement.classList.add("dark");
+            } else {
+              document.documentElement.classList.remove("dark");
+            }
+            updateFavicon(systemDark);
+          }
+        });
+      }
+
+      // Check if user has already seen the intro splash (supports ?intro or ?replay to rewatch)
       try {
         const urlParams = new URLSearchParams(window.location.search);
         const forceIntro = urlParams.has("intro") || urlParams.has("replay");
         const hasSeenIntro = !forceIntro && (
-          (typeof localStorage !== "undefined" && localStorage.getItem("gokul_intro_seen")) ||
-          (typeof sessionStorage !== "undefined" && sessionStorage.getItem("gokul_intro_seen"))
+          (typeof sessionStorage !== "undefined" && sessionStorage.getItem("gokul_intro_seen")) ||
+          (typeof localStorage !== "undefined" && localStorage.getItem("gokul_intro_seen"))
         );
         if (hasSeenIntro) {
           document.documentElement.classList.add("no-intro");
+        } else {
+          document.documentElement.classList.remove("no-intro");
         }
       } catch (e) {}
     </script>

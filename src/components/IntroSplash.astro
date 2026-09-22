@@ -659,13 +659,13 @@ z"
 
 <script is:inline>
   (() => {
-    // Check if user has already seen the intro splash on a previous load
+    // Load only once: check if user has already seen the intro splash (supports ?intro or ?replay to rewatch)
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const forceIntro = urlParams.has("intro") || urlParams.has("replay");
       const hasSeen = !forceIntro && (
-        (typeof localStorage !== "undefined" && localStorage.getItem("gokul_intro_seen")) ||
-        (typeof sessionStorage !== "undefined" && sessionStorage.getItem("gokul_intro_seen"))
+        (typeof sessionStorage !== "undefined" && sessionStorage.getItem("gokul_intro_seen")) ||
+        (typeof localStorage !== "undefined" && localStorage.getItem("gokul_intro_seen"))
       );
 
       const splashEl = document.getElementById("intro-splash");
@@ -677,9 +677,9 @@ z"
         return;
       }
 
-      // First time load: mark as seen so other loads will NOT display it
-      if (typeof localStorage !== "undefined") localStorage.setItem("gokul_intro_seen", "true");
+      // Mark as seen so subsequent visits / page transitions do NOT show the intro again
       if (typeof sessionStorage !== "undefined") sessionStorage.setItem("gokul_intro_seen", "true");
+      if (typeof localStorage !== "undefined") localStorage.setItem("gokul_intro_seen", "true");
     } catch (e) {}
 
     const splash = document.getElementById("intro-splash");
@@ -687,140 +687,178 @@ z"
 
     let isDismissed = false;
     let isMuted = false;
+    let soundStarted = false;
     let audioContext = null;
     let masterGain = null;
 
-    // Netflix-style Signature Sound Synthesizer via Web Audio API
-    const playCinematicSound = () => {
-      if (isMuted || audioContext) return;
+    // Netflix-style Signature Sound Synthesizer via Web Audio API (Always enabled)
+    const triggerAudio = () => {
+      if (isMuted || soundStarted) return;
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         if (!AudioCtx) return;
 
-        audioContext = new AudioCtx();
-        masterGain = audioContext.createGain();
-        masterGain.gain.setValueAtTime(0.65, audioContext.currentTime);
-        masterGain.connect(audioContext.destination);
+        if (!audioContext) {
+          audioContext = new AudioCtx();
+        }
 
-        const now = audioContext.currentTime;
+        const runNotes = () => {
+          if (soundStarted || isMuted) return;
+          soundStarted = true;
 
-        // === HIT 1: "TA" (T = 0.0s) ===
-        // Deep sub-bass drop (95Hz -> 38Hz)
-        const sub1 = audioContext.createOscillator();
-        const subGain1 = audioContext.createGain();
-        sub1.type = "sine";
-        sub1.frequency.setValueAtTime(95, now);
-        sub1.frequency.exponentialRampToValueAtTime(38, now + 0.35);
-        subGain1.gain.setValueAtTime(0.85, now);
-        subGain1.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-        sub1.connect(subGain1);
-        subGain1.connect(masterGain);
-        sub1.start(now);
-        sub1.stop(now + 0.55);
+          masterGain = audioContext.createGain();
+          masterGain.gain.setValueAtTime(0.85, audioContext.currentTime);
+          masterGain.connect(audioContext.destination);
 
-        // Low body cello tone (D2 ~ 73.4Hz)
-        const body1 = audioContext.createOscillator();
-        const bodyGain1 = audioContext.createGain();
-        body1.type = "triangle";
-        body1.frequency.setValueAtTime(73.42, now);
-        bodyGain1.gain.setValueAtTime(0.28, now);
-        bodyGain1.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
-        body1.connect(bodyGain1);
-        bodyGain1.connect(masterGain);
-        body1.start(now);
-        body1.stop(now + 1.25);
+          const now = audioContext.currentTime;
 
-        // Rising harmonic swell during cursive G stroke (0.2s - 2.0s)
-        const swell = audioContext.createOscillator();
-        const swellGain = audioContext.createGain();
-        swell.type = "sine";
-        swell.frequency.setValueAtTime(110, now + 0.2);
-        swell.frequency.exponentialRampToValueAtTime(220, now + 2.0);
-        swellGain.gain.setValueAtTime(0.001, now + 0.2);
-        swellGain.gain.linearRampToValueAtTime(0.09, now + 1.8);
-        swellGain.gain.exponentialRampToValueAtTime(0.001, now + 2.1);
-        swell.connect(swellGain);
-        swellGain.connect(masterGain);
-        swell.start(now + 0.2);
-        swell.stop(now + 2.15);
+          // === HIT 1: "TA" (T = 0.0s) ===
+          // Deep punchy bass drop (130Hz -> 50Hz)
+          const sub1 = audioContext.createOscillator();
+          const subGain1 = audioContext.createGain();
+          sub1.type = "sine";
+          sub1.frequency.setValueAtTime(130, now);
+          sub1.frequency.exponentialRampToValueAtTime(50, now + 0.35);
+          subGain1.gain.setValueAtTime(0.9, now);
+          subGain1.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+          sub1.connect(subGain1);
+          subGain1.connect(masterGain);
+          sub1.start(now);
+          sub1.stop(now + 0.6);
 
-        // === HIT 2: "DUM" (T = 2.1s - exclamation mark pop!) ===
-        const t2 = now + 2.1;
+          // Punch attack overtone (clearly audible on laptop speakers)
+          const punch = audioContext.createOscillator();
+          const punchGain = audioContext.createGain();
+          punch.type = "triangle";
+          punch.frequency.setValueAtTime(220, now);
+          punch.frequency.exponentialRampToValueAtTime(80, now + 0.2);
+          punchGain.gain.setValueAtTime(0.45, now);
+          punchGain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          punch.connect(punchGain);
+          punchGain.connect(masterGain);
+          punch.start(now);
+          punch.stop(now + 0.3);
 
-        // Heavy cinematic sub-bass slam (130Hz -> 30Hz)
-        const sub2 = audioContext.createOscillator();
-        const subGain2 = audioContext.createGain();
-        sub2.type = "sine";
-        sub2.frequency.setValueAtTime(130, t2);
-        sub2.frequency.exponentialRampToValueAtTime(30, t2 + 0.75);
-        subGain2.gain.setValueAtTime(1.0, t2);
-        subGain2.gain.exponentialRampToValueAtTime(0.001, t2 + 1.5);
-        sub2.connect(subGain2);
-        subGain2.connect(masterGain);
-        sub2.start(t2);
-        sub2.stop(t2 + 1.55);
+          // Low body cello tone (A2 ~ 110Hz)
+          const body1 = audioContext.createOscillator();
+          const bodyGain1 = audioContext.createGain();
+          body1.type = "triangle";
+          body1.frequency.setValueAtTime(110.0, now);
+          bodyGain1.gain.setValueAtTime(0.35, now);
+          bodyGain1.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+          body1.connect(bodyGain1);
+          bodyGain1.connect(masterGain);
+          body1.start(now);
+          body1.stop(now + 1.25);
 
-        // Cinematic resonant chord (D2, A2, D3, F#3, A3)
-        const chordFrequencies = [73.42, 110.0, 146.83, 185.0, 220.0];
-        chordFrequencies.forEach((freq, idx) => {
-          const osc = audioContext.createOscillator();
-          const gain = audioContext.createGain();
-          osc.type = idx % 2 === 0 ? "sawtooth" : "triangle";
-          osc.frequency.setValueAtTime(freq, t2);
+          // Rising harmonic swell during cursive G stroke (0.2s - 2.0s)
+          const swell = audioContext.createOscillator();
+          const swellGain = audioContext.createGain();
+          swell.type = "sine";
+          swell.frequency.setValueAtTime(110, now + 0.2);
+          swell.frequency.exponentialRampToValueAtTime(240, now + 2.0);
+          swellGain.gain.setValueAtTime(0.01, now + 0.2);
+          swellGain.gain.linearRampToValueAtTime(0.22, now + 1.8);
+          swellGain.gain.exponentialRampToValueAtTime(0.001, now + 2.1);
+          swell.connect(swellGain);
+          swellGain.connect(masterGain);
+          swell.start(now + 0.2);
+          swell.stop(now + 2.15);
 
-          const filter = audioContext.createBiquadFilter();
-          filter.type = "lowpass";
-          filter.frequency.setValueAtTime(380, t2);
-          filter.frequency.exponentialRampToValueAtTime(140, t2 + 2.4);
+          // === HIT 2: "DUM" (T = 2.1s - exclamation mark pop!) ===
+          const t2 = now + 2.1;
 
-          gain.gain.setValueAtTime(0.2 / chordFrequencies.length, t2);
-          gain.gain.exponentialRampToValueAtTime(0.0001, t2 + 2.6);
+          // Heavy cinematic bass slam (150Hz -> 45Hz)
+          const sub2 = audioContext.createOscillator();
+          const subGain2 = audioContext.createGain();
+          sub2.type = "sine";
+          sub2.frequency.setValueAtTime(150, t2);
+          sub2.frequency.exponentialRampToValueAtTime(45, t2 + 0.75);
+          subGain2.gain.setValueAtTime(1.0, t2);
+          subGain2.gain.exponentialRampToValueAtTime(0.001, t2 + 1.6);
+          sub2.connect(subGain2);
+          subGain2.connect(masterGain);
+          sub2.start(t2);
+          sub2.stop(t2 + 1.65);
 
-          osc.connect(filter);
-          filter.connect(gain);
-          gain.connect(masterGain);
+          // Rich cinematic resonant chord (D2, A2, D3, F#3, A3)
+          const chordFrequencies = [73.42, 110.0, 146.83, 185.0, 220.0];
+          chordFrequencies.forEach((freq, idx) => {
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            osc.type = idx % 2 === 0 ? "sawtooth" : "triangle";
+            osc.frequency.setValueAtTime(freq, t2);
 
-          osc.start(t2);
-          osc.stop(t2 + 2.7);
-        });
+            const filter = audioContext.createBiquadFilter();
+            filter.type = "lowpass";
+            filter.frequency.setValueAtTime(600, t2);
+            filter.frequency.exponentialRampToValueAtTime(180, t2 + 2.4);
 
-        // High crystalline glass shimmer on '!' pop burst
-        const shimmer = audioContext.createOscillator();
-        const shimmerGain = audioContext.createGain();
-        const shimmerFilter = audioContext.createBiquadFilter();
-        shimmer.type = "sine";
-        shimmer.frequency.setValueAtTime(1760, t2);
-        shimmer.frequency.exponentialRampToValueAtTime(2637, t2 + 0.18);
-        shimmerFilter.type = "bandpass";
-        shimmerFilter.frequency.setValueAtTime(2400, t2);
-        shimmerFilter.Q.setValueAtTime(3.5, t2);
-        shimmerGain.gain.setValueAtTime(0.22, t2);
-        shimmerGain.gain.exponentialRampToValueAtTime(0.0001, t2 + 1.2);
-        shimmer.connect(shimmerFilter);
-        shimmerFilter.connect(shimmerGain);
-        shimmerGain.connect(masterGain);
-        shimmer.start(t2);
-        shimmer.stop(t2 + 1.3);
+            gain.gain.setValueAtTime(0.55 / chordFrequencies.length, t2);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t2 + 2.6);
 
-        // Auto unlock if suspended by browser autoplay policy
-        if (audioContext.state === "suspended") {
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(masterGain);
+
+            osc.start(t2);
+            osc.stop(t2 + 2.7);
+          });
+
+          // High crystalline glass shimmer on '!' pop burst
+          const shimmer = audioContext.createOscillator();
+          const shimmerGain = audioContext.createGain();
+          const shimmerFilter = audioContext.createBiquadFilter();
+          shimmer.type = "sine";
+          shimmer.frequency.setValueAtTime(1760, t2);
+          shimmer.frequency.exponentialRampToValueAtTime(2637, t2 + 0.18);
+          shimmerFilter.type = "bandpass";
+          shimmerFilter.frequency.setValueAtTime(2400, t2);
+          shimmerFilter.Q.setValueAtTime(3.5, t2);
+          shimmerGain.gain.setValueAtTime(0.32, t2);
+          shimmerGain.gain.exponentialRampToValueAtTime(0.0001, t2 + 1.2);
+          shimmer.connect(shimmerFilter);
+          shimmerFilter.connect(shimmerGain);
+          shimmerGain.connect(masterGain);
+          shimmer.start(t2);
+          shimmer.stop(t2 + 1.3);
+        };
+
+        if (audioContext.state === "running") {
+          runNotes();
+        } else {
+          // Attempt immediate resume
+          audioContext.resume().then(() => {
+            if (audioContext.state === "running") {
+              runNotes();
+            }
+          }).catch(() => {});
+
+          // Robust fallback unlock on any user gesture
           const unlock = () => {
             if (audioContext && audioContext.state === "suspended") {
-              audioContext.resume();
+              audioContext.resume().then(() => {
+                runNotes();
+              }).catch(() => {});
+            } else {
+              runNotes();
             }
-            window.removeEventListener("pointerdown", unlock);
-            window.removeEventListener("keydown", unlock);
+            ["pointerdown", "touchstart", "mousedown", "keydown", "click"].forEach((ev) => {
+              window.removeEventListener(ev, unlock, true);
+            });
           };
-          window.addEventListener("pointerdown", unlock, { once: true });
-          window.addEventListener("keydown", unlock, { once: true });
+
+          ["pointerdown", "touchstart", "mousedown", "keydown", "click"].forEach((ev) => {
+            window.addEventListener(ev, unlock, { once: true, capture: true });
+          });
         }
       } catch (e) {
         console.warn("Web Audio synthesis:", e);
       }
     };
 
-    // Attempt to play cinematic intro sound immediately
-    playCinematicSound();
+    // Trigger audio immediately on page load
+    triggerAudio();
 
     // Sound toggle button in top-left
     const audioBtn = document.getElementById("intro-audio-btn");
@@ -831,16 +869,16 @@ z"
     if (audioBtn) {
       audioBtn.addEventListener("click", (e) => {
         e.stopPropagation(); // prevent dismissing the splash
-        if (!audioContext) {
-          playCinematicSound();
+        if (!soundStarted) {
+          triggerAudio();
           if (audioContext && audioContext.state === "suspended") {
-            audioContext.resume();
+            audioContext.resume().then(() => triggerAudio()).catch(() => {});
           }
           return;
         }
         isMuted = !isMuted;
-        if (masterGain) {
-          masterGain.gain.setValueAtTime(isMuted ? 0 : 0.65, audioContext.currentTime);
+        if (masterGain && audioContext) {
+          masterGain.gain.setValueAtTime(isMuted ? 0 : 0.75, audioContext.currentTime);
         }
         if (iconOn && iconMuted && labelAudio) {
           iconOn.classList.toggle("hidden", isMuted);
@@ -886,8 +924,13 @@ z"
       });
     }
 
-    // Clicking anywhere on the intro overlay dismisses it instantly (unless clicking audio button)
-    splash.addEventListener("click", () => {
+    // Clicking anywhere on the intro overlay unlocks audio if suspended, or dismisses after playback has started
+    splash.addEventListener("click", (e) => {
+      if (e.target.closest("#intro-audio-btn") || e.target.closest("#skip-splash-btn")) return;
+      if (audioContext && audioContext.state === "suspended") {
+        audioContext.resume().then(() => triggerAudio()).catch(() => {});
+        return;
+      }
       clearTimeout(timer);
       dismissSplash();
     });
