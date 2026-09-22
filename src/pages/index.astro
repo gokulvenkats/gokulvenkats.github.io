@@ -11,45 +11,54 @@ const yearsOfExperience = Math.floor(
 const experienceYears = `${yearsOfExperience}+`;
 
 const pageTitle = "Gokul Venkatesan — Software Engineer & AI Operations";
-const pageDescription = `Software Engineer with ${experienceYears} years of experience in scalable distributed systems, microservices, AI engineering, and intelligent platform operations (AIOps) at Cisco IT.`;
+const pageDescription = `Software Engineer with ${experienceYears} years of experience in scalable distributed systems, microservices, AI engineering, and intelligent platform operations (AIOps) @ Cisco.`;
 
 const coreSkills = [
   "Python",
-  "AI Engineering",
-  "Generative AI",
-  "TypeScript",
-  "Docker & K8s",
-  "Catalyst Center",
-  "Splunk Observability",
-  "ThousandEyes",
   "REST APIs",
-  "AIOps",
+  "AI Engineering",
+  "MLOps",
+  "Generative AI",
+  "Docker & K8s",
+  "Web Apps",
 ];
 
 const highlights = [
   {
     role: "Site Reliability & AI Operations Engineer",
-    company: "Cisco IT",
+    company: "Cisco Systems (IT)",
     period: "Sept 2024 — Present",
-    highlight: "Enterprise network platforms (Catalyst Center, NSO, FMC, Splunk, ThousandEyes), Customer Zero, RBAC security, automated controller pipelines & AI operational integrations.",
+    presentlyWorking: true,
+    summary:
+      "Leading enterprise network platform reliability and AI operational workflows (AIOps) as Customer Zero across Cisco's global IT backbone. Driving zero-downtime controller lifecycles, enterprise RBAC governance, and automated telemetry across Catalyst Center, NSO, and Splunk Observability.",
+    tags: ["Catalyst Center", "NSO", "Splunk Observability", "AIOps", "Python", "Enterprise Security"],
   },
   {
     role: "Software Engineer / SRE",
     company: "Cisco Systems (SD-WAN)",
-    period: "2022 — 2024",
-    highlight: "SD-WAN controller enhancements, automated health diagnostics, and multi-cloud high-availability disaster recovery architectures.",
+    period: "July 2022 — Sept 2024",
+    presentlyWorking: false,
+    summary:
+      "Architected high-availability controller infrastructure and automated disaster recovery for global enterprise SD-WAN deployments. Engineered proactive health diagnostics and telemetry routines that dramatically minimized system MTTR.",
+    tags: ["SD-WAN", "Multi-Cloud HA", "Kubernetes", "Prometheus", "Python", "Disaster Recovery"],
   },
   {
     role: "Senior Software Engineer",
     company: "Wipro (Client: Apple Inc.)",
-    period: "2020 — 2022",
-    highlight: "Enterprise ETL data pipelines integrating MongoDB time-series, Kubernetes containerization, and telemetry with Splunk, Prometheus & Tableau.",
+    period: "Dec 2020 — July 2022",
+    presentlyWorking: false,
+    summary:
+      "Engineered mission-critical ETL data pipelines and distributed analytics infrastructure for Apple Inc. Scaled containerized Kubernetes microservices processing high-velocity time-series datasets with full-stack observability.",
+    tags: ["Data Engineering", "Kubernetes", "MongoDB", "Splunk & Grafana", "Python", "Tableau"],
   },
   {
     role: "Technology Lead",
     company: "Elait IT Technologies",
-    period: "2015 — 2020",
-    highlight: "Full-stack application architecture, high-scale Python REST APIs, ANTLR4 parsers, and automated CI/CD deployments.",
+    period: "Nov 2015 — Dec 2020",
+    presentlyWorking: false,
+    summary:
+      "Spearheaded software architecture, backend system design, and engineering delivery for scalable enterprise platforms. Led engineering teams in building high-throughput Python REST APIs, custom ANTLR4 parsers, and automated CI/CD infrastructure.",
+    tags: ["System Architecture", "Python APIs", "ANTLR4", "Microservices", "CI/CD"],
   },
 ];
 ---
@@ -75,7 +84,7 @@ const highlights = [
         <div class="flex flex-wrap items-center justify-center gap-2">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Software Engineer • AI Engineering & Operations @ Cisco IT
+            Software Engineer • AI Engineering & SRE Operations @ Cisco
           </div>
           <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-slate-500/10 text-slate-700 dark:text-slate-300 border border-slate-500/20">
             <span>📍 Bengaluru, India</span>
@@ -84,8 +93,8 @@ const highlights = [
             <span>⚡ GenAI, Azure AI & AWS Certified</span>
           </div>
         </div>
-        <h1 class="name">Gokul Venkatesan</h1>
-        <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
+        <h1 class="page-title">Gokul Venkatesan</h1>
+        <p class="body-text max-w-xl mx-auto">
           Software Engineer with {experienceYears} years of experience designing, architecting, and optimizing scalable systems. Focused on modern full-stack development, Generative AI engineering, and intelligent operations (AIOps) for enterprise platforms.
         </p>
       </div>
@@ -116,7 +125,7 @@ const highlights = [
           href="mailto:gokul.venkatesan@outlook.com"
           class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-white/60 dark:bg-slate-800/60 text-slate-800 dark:text-slate-200 border border-slate-900/10 dark:border-white/10 hover:border-sky-400 hover:text-sky-600 dark:hover:text-sky-400 transition-all"
         >
-          <span>Contact Me</span>
+          <span>Mail Me</span>
         </a>
       </div>
 
@@ -134,42 +143,42 @@ const highlights = [
     <!-- Engineering Disciplines -->
     <section class="space-y-4">
       <div class="text-center">
-        <h2 class="subtitle">Core Competencies</h2>
+        <h2 class="section-title justify-center">Core Competencies</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
         <div class="glass-card p-5 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-sky-500/10 dark:bg-sky-400/20 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/10 dark:bg-sky-400/20 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm font-mono">
             01
           </div>
-          <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+          <h3 class="card-title">
             Software Development & Systems Architecture
           </h3>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p class="body-text">
             Designing robust backends, microservices, and REST APIs with Python, Node.js, and TypeScript. Expert in data modeling, containerized orchestration, and scalable system patterns.
           </p>
         </div>
 
         <div class="glass-card p-5 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-sky-500/10 dark:bg-sky-400/20 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/10 dark:bg-sky-400/20 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm font-mono">
             02
           </div>
-          <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+          <h3 class="card-title">
             AI Engineering & Intelligent Automation
           </h3>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p class="body-text">
             Integrating Generative AI and LLM workflows into enterprise platforms. Building automated controller workflows, intelligent policy automation, and custom toolchains that reduce operational friction.
           </p>
         </div>
 
         <div class="glass-card p-5 space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-sky-500/10 dark:bg-sky-400/20 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm">
+          <div class="w-8 h-8 rounded-lg bg-sky-500/10 dark:bg-sky-400/20 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-sm font-mono">
             03
           </div>
-          <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+          <h3 class="card-title">
             AIOps & Platform Reliability (Customer Zero)
           </h3>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            Operating mission-critical network platforms (Catalyst Center, NSO, FMC, Splunk Observability, ThousandEyes) as Customer Zero. Leading enterprise RBAC security, zero-downtime upgrades, and comprehensive telemetry.
+          <p class="body-text">
+            Operating mission-critical network platforms (Catalyst Center, NSO, FMC, Splunk Observability, ThousandEyes) as Customer Zero. Leading enterprise security, zero-downtime upgrades, and comprehensive telemetry.
           </p>
         </div>
       </div>
@@ -179,14 +188,14 @@ const highlights = [
     <section class="space-y-4">
       <div class="flex items-end justify-between border-b border-black/5 dark:border-white/5 pb-3">
         <div>
-          <h2 class="subtitle">Experience Overview</h2>
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
+          <h2 class="section-title">Experience Overview</h2>
+          <p class="body-text mt-1 text-slate-500 dark:text-slate-400">
             Proven software engineering and platform leadership across global enterprises.
           </p>
         </div>
         <a
           href="/about"
-          class="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:underline inline-flex items-center gap-1 whitespace-nowrap"
+          class="meta-text hover:underline inline-flex items-center gap-1 whitespace-nowrap"
         >
           Full Details
           <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -195,25 +204,41 @@ const highlights = [
         </a>
       </div>
 
-      <div class="space-y-3">
+      <div class="space-y-3 sm:space-y-4">
         {highlights.map((item) => (
-          <div class="glass-card p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div class="space-y-1">
-              <div class="flex items-center gap-2">
-                <h3 class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
+          <div class="glass-card p-4 sm:p-5 space-y-2.5">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 border-b border-black/5 dark:border-white/5 pb-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="card-title">
                   {item.role}
                 </h3>
-                <span class="text-sky-600 dark:text-sky-400 font-semibold text-xs sm:text-sm">
+                <span class="meta-text">
                   @{item.company}
                 </span>
+                {item.presentlyWorking && (
+                  <span class="caption-text font-mono inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 border border-emerald-500/30">
+                    Present
+                  </span>
+                )}
               </div>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                {item.highlight}
-              </p>
+              <div class="caption-text font-semibold whitespace-nowrap sm:text-right">
+                {item.period}
+              </div>
             </div>
-            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 whitespace-nowrap sm:text-right">
-              {item.period}
-            </div>
+
+            <p class="body-text">
+              {item.summary}
+            </p>
+
+            {item.tags && item.tags.length > 0 && (
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                {item.tags.map((tag) => (
+                  <span class="px-2 py-0.5 rounded-md text-[11px] font-mono font-medium bg-slate-900/5 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-900/10 dark:border-white/10">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

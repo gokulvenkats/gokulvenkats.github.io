@@ -5,7 +5,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        sans: [
+          '"Inter"',
+          "-apple-system",
+          "BlinkMacSystemFont",
+          '"Segoe UI"',
+          "Roboto",
+          '"Helvetica Neue"',
+          "Arial",
+          "sans-serif",
+        ],
         mono: [
+          '"Fira Mono"',
+          '"Fira Code"',
           "ui-monospace",
           "SFMono-Regular",
           "Menlo",
